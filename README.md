@@ -1,4 +1,4 @@
-Ballot Project
+Ballot Project:
 
 An application that returns a list of candidates running in the next election.
 User inputs their street address and a sample ballot is returned.
