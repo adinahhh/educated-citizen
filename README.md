@@ -9,6 +9,7 @@ Features
 
 Planning
     Project board: https://github.com/adinahhh/ballot-project
+    
     Data Model in google drive: https://drive.google.com/open?id=1RQHNn84aayKCSCODIZT771bfV3PcZccs
 
     Sprint 1: Plan user flow and data modeling
