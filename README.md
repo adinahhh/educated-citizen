@@ -8,10 +8,10 @@ Features
     Comparison of candidates based on issues user selected are important to them
 
 Planning
-    Project board:
-    Visuals and Models:
+    Project board: https://github.com/adinahhh/ballot-project
+    Data Model in data model.png file
 
     Sprint 1: Plan user flow and data modeling
-    Sprint 2: MVP complete
+    Sprint 2: MVP complete-- user can search address and receive sample ballot
     Sprint 3: Design pages
     Sprint 4: Final project complete, practice presenting
