@@ -15,6 +15,11 @@ def homepage():
 
     return render_template('homepage.html')
 
+@app.route('/search_results')
+def search_results():
+
+    return render_template('results.html')
+
 
 if __name__ == '__main__':
     app.debug = True

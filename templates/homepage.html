@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Ballot Lookup Tool{% endblock %}
+
+{% block content %}
+
+  <h4>Welcome to Ballot Lookup Tool!</h4>
+
+  <br>
+  <br>
+  <br>
+  <p>short description here</p>
+  <br>
+  <br>
+  <form method="GET" action="/search_results">
+    <label>Please enter your street address</label>
+    <input type="text" id="street-address" name="address">
+
+    <br>
+    <br>
+    
+    Please select an issue that matters to you:
+    <select name="category">
+      <option value="education">Education</option>
+      <option value="healthcare">Healthcare</option>
+      <option value="immigration">Immigration</option>
+    <input type="submit">
+  </form>
+
+{% endblock %}
