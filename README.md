@@ -9,7 +9,7 @@ Features
 
 Planning
     Project board: https://github.com/adinahhh/ballot-project
-    Data Model in data model.png file
+    Data Model in google drive: https://drive.google.com/open?id=1RQHNn84aayKCSCODIZT771bfV3PcZccs
 
     Sprint 1: Plan user flow and data modeling
     Sprint 2: MVP complete-- user can search address and receive sample ballot
