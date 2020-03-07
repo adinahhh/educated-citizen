@@ -17,7 +17,7 @@ def homepage():
 
 @app.route('/elections')
 def election_info():
-    """User search for ballot with street address """
+    """ election query info, unsure if i will use this """
 
 # below is for electionQuery
     election_url = 'https://www.googleapis.com/civicinfo/v2/elections'
@@ -40,18 +40,26 @@ def election_info():
 
 @app.route('/contests')
 def contest_info():
+    """User search for ballot with street address """
+
 # below is for voterInfoQuery
 # match address from homepage.html with address in payload
-    # voter_address = request.args.get('address', '')
+    address = request.args.get('address', '')
 
 # use elections id from election query as a param in voter_payload
 # will the electionid be stored in a session key?
 
-    # voter_url = 'https://www.googleapis.com/civicinfo/v2/voterinfo'
-    # voter_payload = {'key' : API_KEY, 'voter_address': address, 'electionId' : '2000'}
-    # voter_response = requests.get(voter_url, params=voter_payload)
-    # voter_info_json = voter_response.json() 
-    pass
+    voter_url = 'https://www.googleapis.com/civicinfo/v2/voterinfo'
+    voter_payload = {'key' : API_KEY, 'address': address}
+    voter_response = requests.get(voter_url, params=voter_payload)
+    voter_info_json = voter_response.json()
+
+    # getting election data, converting to list
+    voter_election_data = voter_info_json['election']
+    voter_election_list = list(voter_election_data.values())
+    elections = voter_election_list[1:3] 
+
+    return render_template('ballot.html', elections=elections)
 
 if __name__ == '__main__':
     app.debug = True
