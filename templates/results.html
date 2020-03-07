@@ -4,8 +4,10 @@
 
 {% block content %}
 
-{{ elections[0].values() }}
+<h3>Election Info</h3>
+    {% for election in elections %}
+       <p> {{ election }}</p>
+    {% endfor %}
 
-{{ elections['id'] }}
 
 {% endblock %}

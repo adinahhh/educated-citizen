@@ -15,8 +15,8 @@ def homepage():
 
     return render_template('homepage.html')
 
-@app.route('/search')
-def search_address():
+@app.route('/elections')
+def election_info():
     """User search for ballot with street address """
 
 # below is for electionQuery
@@ -25,12 +25,21 @@ def search_address():
 
     election_response = requests.get(election_url, params=election_payload)
 
+    # response in json
     election_data = election_response.json()
-    # here i need to figure out how to queue my data
-    elections = election_data['elections']
+    election_info_data = election_data['elections']
+
+    # converting dict into list, getting back election name & date
+    elections_list = list(election_info_data[0].values())
+    elections = elections_list[1:3]
+
 
     return render_template('results.html', elections=elections)
 
+    # remember the electionId is the first value in the list for elections
+
+@app.route('/contests')
+def contest_info():
 # below is for voterInfoQuery
 # match address from homepage.html with address in payload
     # voter_address = request.args.get('address', '')
@@ -42,7 +51,7 @@ def search_address():
     # voter_payload = {'key' : API_KEY, 'voter_address': address, 'electionId' : '2000'}
     # voter_response = requests.get(voter_url, params=voter_payload)
     # voter_info_json = voter_response.json() 
-
+    pass
 
 if __name__ == '__main__':
     app.debug = True
