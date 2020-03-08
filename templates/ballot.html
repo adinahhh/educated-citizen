@@ -17,5 +17,13 @@
         {% endfor %}
     {% endfor %}
 </p>
+<br>
+    {% for candidate in candidates %}
+        {% for person in candidate %}
+        <div>{{ person }} </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{info}}
 
 {% endblock %}
