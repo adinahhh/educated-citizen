@@ -59,7 +59,15 @@ def contest_info():
     voter_election_list = list(voter_election_data.values())
     elections = voter_election_list[1:3] 
 
-    return render_template('ballot.html', elections=elections)
+    # unsure how to get values from contests without indexing
+    # contests[0] gives info about first office contest
+    first_contest_data = voter_info_json['contests'][0]
+    # first_contest_tuples = [(key,value) for key, value in first_contest_data.items()]
+    first_contest_tuples = list(first_contest_data.items())
+    spliced_data = first_contest_tuples[0:4]
+
+    return render_template('ballot.html', elections=elections,
+                           contests=spliced_data)
 
 if __name__ == '__main__':
     app.debug = True

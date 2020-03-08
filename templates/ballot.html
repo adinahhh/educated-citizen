@@ -9,4 +9,13 @@
        <p> {{ election }}</p>
     {% endfor %}
 
+<h3> Election Info </h3>
+<p>
+    {% for contest in contests %}
+        {% for item in contest %}
+            {{ item }}
+        {% endfor %}
+    {% endfor %}
+</p>
+
 {% endblock %}
