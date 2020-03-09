@@ -67,6 +67,7 @@ def contest_info():
 
     candidate_info = first_contest_list[7][1:]
 
+
     return render_template('ballot.html', elections=elections, 
                            contests=spliced_data, candidates=candidate_info)
 
