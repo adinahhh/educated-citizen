@@ -1,8 +1,10 @@
 """Models for final hackbright project """
 
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+app = Flask(__name__)
 
 class Legislator(db.Model):
     """ Info on current legislators. """
@@ -26,3 +28,22 @@ class Legislator(db.Model):
     # votesmart api and opensecrets api 
     # if i need to add more classes, then i need to add in backrefs
     # and foreign keys
+
+def connect_to_db(app):
+    """ Connect database to Flask app."""
+
+    # Configure to use my PstgreSQL database
+    # ***come back to this to make sure db name is correct ***
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///legislature'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.app = app
+    db.init_app(app)
+
+
+if __name__ == "__main__":
+    # As a convenience, if we run this module interactively, it will leave
+    # you in a state of being able to work with the database directly.
+
+    from server import app
+    connect_to_db(app)
+    print("Connected to DB.")
