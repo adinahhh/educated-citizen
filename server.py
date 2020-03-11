@@ -9,6 +9,7 @@ app.secret_key = 'SECRETSECRETSECRET'
 
 API_KEY = os.environ['CIVIC_API_KEY']
 
+
 @app.route('/')
 def homepage():
     """ Homepage with user form"""
@@ -71,6 +72,12 @@ def contest_info():
     return render_template('ballot.html', elections=elections, 
                            contests=spliced_data, candidates=candidate_info)
 
+
+
+@app.route('/smartvote')
+def vote_smart():
+    """ Trying new stuff with Vote Smart API"""
+    pass
 
 if __name__ == '__main__':
     app.debug = True
