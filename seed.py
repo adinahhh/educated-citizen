@@ -14,22 +14,18 @@ def load_legislators():
     # ***ratings lab had a print statement, and then Class.query.delete()
     # because my data isnt changing, do I need to do this?
 
-    
-
-        # index = data.split()
 
     for legis in legislature_json:
 
         full_name = legis['name']['official_full']
         party= legis['terms'][0]['party']
-        opensecrets_id = legis[0]['id']['opensecrets']
-        govtrack_id = legis[0]['id']['govtrack']
-        votesmart_id = legis[0]['id']['votesmart']
+        opensecrets_id = legis['id']['opensecrets']
+        govtrack_id = legis['id']['govtrack']
+        # votesmart_id = legis['id']['votesmart']
 
         legislator = Legislator(full_name=full_name, party=party, 
                                 opensecrets_id=opensecrets_id,
-                                govtrack_id=govtrack_id,
-                                votesmart_id=votesmart_id)
+                                govtrack_id=govtrack_id)
 
         # adding to session to store it
         db.session.add(legislator)

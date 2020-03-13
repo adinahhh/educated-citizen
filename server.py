@@ -25,21 +25,30 @@ def find_congressional_info():
     # find zip code from user's form
     user_zipcode = request.args.get('zipcode', '')
     votesmart_zipcode_url = 'http://api.votesmart.org/Officials.getByZip'
-    votesmart_zipcode_payload = {'key' : VOTESMART_API_KEY, 'zip5' : user_zipcode}
+    votesmart_zipcode_payload = {'key' : VOTESMART_API_KEY,
+                                 'zip5' : user_zipcode}
     votesmart_zipcode_response = requests.get(votesmart_zipcode_url, 
                                               params=votesmart_zipcode_payload)
     # response in xml
     root = ET.fromstring(votesmart_zipcode_response.content)
 
+    #build empty list of dictionaries with candidate data
+    candidates = []
+
     for candidate in root.iter('candidate'):
-        cfirst_name = candidate.find('firstName').text
-        clast_name = candidate.find('lastName').text
-        ctitle = candidate.find('title').text
-        coffice_parties = candidate.find('officeParties').text
+        dict_of_official = {
+        "cfirst_name": candidate.find('firstName').text,
+        "clast_name": candidate.find('lastName').text,
+        "ctitle": candidate.find('title').text,
+        "coffice_parties": candidate.find('officeParties').text
+        }
+        candidates.append(dict_of_official)
 
-        # print(f'{cfirst_name} {clast_name}: {ctitle} {coffice_parties}')
+        
+    return render_template('results.html', candidates=candidates)
 
-    # return render_template('results.html', )
+    # candidate = cfirst_name clast_name ctitle coffice_parties
+
 
 @app.route('/elections')
 def election_info():

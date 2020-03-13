@@ -3,8 +3,12 @@
 {% block title %}Vote Smart{% endblock %}
 
 {% block content %}
+        
+        {% for candidate in candidates %}
+            <h3>{{ candidate }}</h3>
 
-    {{ officials }}
+            <br>
+        {% endfor %}
 
 
 {% endblock %}
