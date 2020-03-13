@@ -1,4 +1,4 @@
-[
+legislature_json = [
   {
     "id": {
       "bioguide": "B000944",
@@ -45264,7 +45264,7 @@
         "address": "2350 Rayburn House Office Building; Washington DC 20515-4005",
         "office": "2350 Rayburn House Office Building",
         "phone": "202-225-5501",
-        "fax": null
+        "fax": None,
       },
       {
         "type": "rep",

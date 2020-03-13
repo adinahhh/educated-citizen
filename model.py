@@ -14,7 +14,6 @@ class Legislator(db.Model):
     legislator_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     full_name = db.Column(db.String(200), nullable=False)
     party = db.Column(db.String(50), nullable=False)
-    url = db.Column(db.String(150), nullable=False)
     opensecrets_id = db.Column(db.Integer, nullable=False)
     govtrack_id = db.Column(db.Integer, nullable=False)
     votesmart_id = db.Column(db.Integer, nullable=False)

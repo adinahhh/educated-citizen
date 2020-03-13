@@ -3,6 +3,8 @@
 from sqlalchemy import func
 from model import Legislator
 
+from legislators_current import legislature_json
+
 from model import connect_to_db, db
 from server import app
 
@@ -12,19 +14,22 @@ def load_legislators():
     # ***ratings lab had a print statement, and then Class.query.delete()
     # because my data isnt changing, do I need to do this?
 
-    # will need to correct file path below
+    
 
-    # need to download json file before i can decide how to parse data
-    # for row in open("seed_data/")
-    #     legislator_id
-    #     full_name
-    #     party
-    #     url
-    #     opensecrets_id
-    #     govtrack_id
-    #     votesmart_id
+        # index = data.split()
 
-    #     legislator = Legislator(legislator_id=....)
+    for legis in legislature_json:
+
+        full_name = legis['name']['official_full']
+        party= legis['terms'][0]['party']
+        opensecrets_id = legis[0]['id']['opensecrets']
+        govtrack_id = legis[0]['id']['govtrack']
+        votesmart_id = legis[0]['id']['votesmart']
+
+        legislator = Legislator(full_name=full_name, party=party, 
+                                opensecrets_id=opensecrets_id,
+                                govtrack_id=govtrack_id,
+                                votesmart_id=votesmart_id)
 
         # adding to session to store it
         db.session.add(legislator)

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 
+import xml.etree.ElementTree as ET
 from pprint import pformat
 import os
 import requests
@@ -7,7 +8,8 @@ import requests
 app = Flask(__name__)
 app.secret_key = 'SECRETSECRETSECRET'
 
-API_KEY = os.environ['CIVIC_API_KEY']
+# API_KEY = os.environ['CIVIC_API_KEY']
+VOTESMART_API_KEY = os.environ['VOTESMART_API_KEY']
 
 
 @app.route('/')
@@ -15,6 +17,29 @@ def homepage():
     """ Homepage with user form"""
 
     return render_template('homepage.html')
+
+@app.route('/congress')
+def find_congressional_info():
+    """ Trying new stuff with Vote Smart API"""
+
+    # find zip code from user's form
+    user_zipcode = request.args.get('zipcode', '')
+    votesmart_zipcode_url = 'http://api.votesmart.org/Officials.getByZip'
+    votesmart_zipcode_payload = {'key' : VOTESMART_API_KEY, 'zip5' : user_zipcode}
+    votesmart_zipcode_response = requests.get(votesmart_zipcode_url, 
+                                              params=votesmart_zipcode_payload)
+    # response in xml
+    root = ET.fromstring(votesmart_zipcode_response.content)
+
+    for candidate in root.iter('candidate'):
+        cfirst_name = candidate.find('firstName').text
+        clast_name = candidate.find('lastName').text
+        ctitle = candidate.find('title').text
+        coffice_parties = candidate.find('officeParties').text
+
+        # print(f'{cfirst_name} {clast_name}: {ctitle} {coffice_parties}')
+
+    # return render_template('results.html', )
 
 @app.route('/elections')
 def election_info():
@@ -72,12 +97,6 @@ def contest_info():
     return render_template('ballot.html', elections=elections, 
                            contests=spliced_data, candidates=candidate_info)
 
-
-
-@app.route('/smartvote')
-def vote_smart():
-    """ Trying new stuff with Vote Smart API"""
-    pass
 
 if __name__ == '__main__':
     app.debug = True

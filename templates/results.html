@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Ballot Info{% endblock %}
+{% block title %}Congressional Info{% endblock %}
 
 {% block content %}
 
-<h3>Election Info</h3>
-    {% for election in elections %}
-       <p> {{ election }}</p>
-    {% endfor %}
+<h2>Who is representing you?</h2>
+    <h4>{{ candidates }}</h4>
 
 
 {% endblock %}
