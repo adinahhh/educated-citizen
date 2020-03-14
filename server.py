@@ -18,8 +18,8 @@ def homepage():
 
     return render_template('homepage.html')
 
-@app.route('/congress')
-def find_congressional_info():
+@app.route('/officials')
+def find_elected_officials():
     """ Trying new stuff with Vote Smart API"""
 
     # find zip code from user's form
@@ -36,13 +36,13 @@ def find_congressional_info():
     list_candidates = []
 
     for candidate in root.iter('candidate'):
-        dict_of_official = {
+        dict_of_officials = {
             "cfirst_name": candidate.find('firstName').text,
             "clast_name": candidate.find('lastName').text,
             "ctitle": candidate.find('title').text,
             "coffice_parties": candidate.find('officeParties').text
         }
-        list_candidates.append(dict_of_official)
+        list_candidates.append(dict_of_officials)
 
         
     return render_template('smartvote.html', candidates=list_candidates)

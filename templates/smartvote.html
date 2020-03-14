@@ -3,12 +3,13 @@
 {% block title %}Vote Smart{% endblock %}
 
 {% block content %}
-
-        <ul>
+    <h3>Your Elected Officials:</h3>
         {% for candidate in candidates %}
-        <li>{{ candidate }}</li>
+        <ul>{% for cand in candidate.values() %}</ul>
         <br>
+            {{ cand }}
+            {% endfor %}
         {% endfor %}
-    </ul>
+
 
 {% endblock %}
