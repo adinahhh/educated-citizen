@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Congressional Info{% endblock %}
+{% block title %}Election Info{% endblock %}
 
 {% block content %}
 
-<h2>Who is representing you?</h2>
-    <h4>{{ candidate }}</h4>
+<h4>Don't agree with how some of your elected officials have voted?</h4>
+<p>Check here to see if there is an election coming up!</p>
+    {% for election in elections %}
 
+        {{ election }}
+    {% endfor %}
 
 
 {% endblock %}
