@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Ballot Lookup Tool{% endblock %}
+{% block title %}Legislator Lookup Tool{% endblock %}
 
 {% block content %}
 
-  <h4>Welcome to candidate lookup tool!</h4>
+  <h4>Welcome to elected official lookup tool!</h4>
 
   <br>
   <br>
@@ -21,9 +21,10 @@
 
     Please select an issue that matters to you:
     <select name="category">
-      <option value="education">Education</option>
-      <option value="healthcare">Healthcare</option>
-      <option value="immigration">Immigration</option>
+      <option value="healthcare" name="38" id="38">Health and Health Care</option>
+      <option value="healthcare" name="2" id="2">Abortion</option>
+      <option value="civil-rights" name= "13">Civil Liberties and Civil Rights</option>
+      <option value="environment" name="30">Environment</option>
       <br>
     <input type="submit">
   </form>

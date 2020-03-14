@@ -20,7 +20,7 @@ def homepage():
 
 @app.route('/officials')
 def find_elected_officials():
-    """ Trying new stuff with Vote Smart API"""
+    """Finding all elected officials using Vote Smart API"""
 
     # find zip code from user's form
     user_zipcode = request.args.get('zipcode', '')
@@ -34,8 +34,11 @@ def find_elected_officials():
 
     #build empty list of dictionaries with candidate data
     list_candidates = []
+    list_candidate_id = []
 
     for candidate in root.iter('candidate'):
+        candidate_id = candidate.find('candidateId').text
+        list_candidate_id.append(candidate_id)
         dict_of_officials = {
             "cfirst_name": candidate.find('firstName').text,
             "clast_name": candidate.find('lastName').text,
@@ -44,8 +47,41 @@ def find_elected_officials():
         }
         list_candidates.append(dict_of_officials)
 
+    bill_category = request.args.get('category', '')
+    bill_category_url = 'http://api.votesmart.org/Votes.getBillsByCategoryYearState'
+    bill_category_payload = {'key' : VOTESMART_API_KEY,
+                             'categoryId' : bill_category, 'year': 2020}
+    bill_category_response = requests.get(bill_category_url, 
+                                          params=bill_category_payload)
+    # response in xml
+    bill_root = ET.fromstring(bill_category_response.content)
+
+    list_bills = []
+
+    for bill in bill_root.iter('bill'):
+        dict_of_bills = {
+        "bill_number" : bill.find('billNumber').text,
+        "bill_title" : bill.find('title').text,
+        "bill_type" : bill.find('type').text,
+        }
+        list_bills.append(dict_of_bills)
         
-    return render_template('smartvote.html', candidates=list_candidates)
+    return render_template('smartvote.html', candidates=list_candidates,
+                           bills=list_bills)
+
+
+# @app.route('/votes')
+# def vote_by_official():
+#     """ Finding votes official made on bills in category user selected. """
+
+#     # vote_by_official_candidate_id = 
+#     # how best to get candidate id?
+#     # i can only grab one candidate at a time, maybe this should be an ajax
+#     # if user clicks on a candidate in ('/officials'), then it goes to this
+#     # route? i use that click as the candidate id?
+
+#     vote_by_official_url = 'http://api.votesmart.org/Votes.getByOfficial'
+#     vote_by_official_payload = {'key' : VOTESMART_API_KEY, 'candidateId': }
 
 ########## info below this is related to Google Civic Info API ########
 # unsure if i will use this

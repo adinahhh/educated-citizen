@@ -11,5 +11,13 @@
             {% endfor %}
         {% endfor %}
 
+    <h3>Recent Legislation on Issue you care about:</h3>
+    {% for bill in bills %}
+        <ul>{% for b in bill.values() %}</ul>
+        <br>
+            {{ b }}
+            {% endfor %}
+        {% endfor %}
+
 
 {% endblock %}
