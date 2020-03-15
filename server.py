@@ -50,7 +50,7 @@ def find_elected_officials():
     bill_category = request.args.get('category', '')
     bill_category_url = 'http://api.votesmart.org/Votes.getBillsByCategoryYearState'
     bill_category_payload = {'key' : VOTESMART_API_KEY,
-                             'categoryId' : bill_category, 'year': 2020}
+                             'categoryId' : bill_category, 'year': '2020'}
     bill_category_response = requests.get(bill_category_url, 
                                           params=bill_category_payload)
     # response in xml
@@ -60,9 +60,9 @@ def find_elected_officials():
 
     for bill in bill_root.iter('bill'):
         dict_of_bills = {
-        "bill_number" : bill.find('billNumber').text,
-        "bill_title" : bill.find('title').text,
-        "bill_type" : bill.find('type').text,
+        "bill_number": bill.find('billNumber').text,
+        "bill_title": bill.find('title').text,
+        "bill_type": bill.find('type').text,
         }
         list_bills.append(dict_of_bills)
         
