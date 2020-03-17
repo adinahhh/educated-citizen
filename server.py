@@ -10,7 +10,7 @@ app.secret_key = 'SECRETSECRETSECRET'
 
 API_KEY = os.environ['CIVIC_API_KEY']
 VOTESMART_API_KEY = os.environ['VOTESMART_API_KEY']
-
+OPEN_SECRETS_API_KEY = os.environ['OPEN_SECRETS_API_KEY']
 
 @app.route('/')
 def homepage():
@@ -68,6 +68,30 @@ def find_elected_officials():
         
     return render_template('smartvote.html', candidates=list_candidates,
                            bills=list_bills)
+
+@app.route('/open_secrets')
+def top_industries_by_member():
+    """ Will show top 10 contributors to a legislator by industry using
+        OpenSecrets API """ 
+
+    top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
+    # unclear how I am having user obtain candidate id (cid)
+    # can this be from a user event? for now I am hardcoding this
+    cand_id = 'N00003535'
+    top_industries_payload = {'cid' : cand_id, 'cycle' : 2020,
+                              'apikey' : OPEN_SECRETS_API_KEY}
+    top_industries_response = requests.get(top_industries_url,
+                                           top_industries_payload)
+    top_industry_root = ET.fromstring(top_industries_response)
+
+    list_industry = []
+
+    for industry in top_industry_root.iter('industry'):
+            dict_industries = industry_name.attrib
+            list_industry.append(dict_industries)
+    pass
+
+    # 3/17 need to make an html file to route this
 
 
 # @app.route('/votes')
