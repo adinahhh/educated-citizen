@@ -14,19 +14,15 @@ class Legislator(db.Model):
     legislator_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     full_name = db.Column(db.String(200), nullable=False)
     party = db.Column(db.String(50), nullable=False)
-    opensecrets_id = db.Column(db.Integer, nullable=True)
+    # opensecrets_id = db.Column(db.Integer, nullable=True)
     govtrack_id = db.Column(db.Integer, nullable=False)
-    votesmart_id = db.Column(db.Integer, nullable=True)
+    # votesmart_id = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         """ provide info on legislator."""
 
         return f"Legislator: {self.full_name} party: {self.party}"
 
-    # ask do I need to add more classes or if I can combine queries from
-    # votesmart api and opensecrets api 
-    # if i need to add more classes, then i need to add in backrefs
-    # and foreign keys
 
 def connect_to_db(app):
     """ Connect database to Flask app."""
@@ -46,3 +42,5 @@ if __name__ == "__main__":
     from server import app
     connect_to_db(app)
     print("Connected to DB.")
+    # create tables
+    db.create_all()
