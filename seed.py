@@ -12,10 +12,6 @@ import json
 # def load_legislators():
     # """ Load legislators from data file into database."""
 
-    # ***ratings lab had a print statement, and then Class.query.delete()
-    # because my data isnt changing, do I need to do this?
-    # Legislator.query.delete()
-
     # full_name = []
     # party = []
     # govtrack_id = []
@@ -60,11 +56,15 @@ def load_legislators():
     for key in legislator_dict:
         full_name = legislator_dict[i]['name']['official_full']
         party = legislator_dict[i]['terms'][0]['party']
+        opensecrets_id = legislator_dict[i]['id'].get('opensecrets', 0)
         govtrack_id = legislator_dict[i]['id']['govtrack']
+        votesmart_id = legislator_dict[i]['id'].get('votesmart', 0)
         i += 1
-        
-        legislator = Legislator(full_name=full_name, party=party, 
-                                govtrack_id=govtrack_id)
+
+        legislator = Legislator(full_name=full_name, party=party,
+                                opensecrets_id=opensecrets_id,
+                                govtrack_id=govtrack_id,
+                                votesmart_id=votesmart_id)
 
         db.session.add(legislator)
 
