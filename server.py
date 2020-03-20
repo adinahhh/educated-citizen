@@ -88,6 +88,7 @@ def member_results():
     # using who user selected on candidate search form
     official_last_name = request.args.get('last-name')
     state = request.args.get('state')
+    # one legislator in db has a null value, accounting for that below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
                                             Legislator.last_name!=None,
                                             Legislator.state==state).first()
