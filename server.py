@@ -71,28 +71,6 @@ def find_elected_officials():
     return render_template('smartvote.html', candidates=list_candidates,
                            bills=list_bills)
 
-@app.route('/open_secrets')
-def top_industries_by_member():
-    """ Will show top 10 contributors to a legislator by industry using
-        OpenSecrets API """ 
-
-    top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
-    # unclear how I am having user obtain candidate id (cid)
-    # can this be from a user event? for now I am hardcoding this
-    # could be from a form the user searches for candidate?
-    cand_id = 'N00003535'
-    top_industries_payload = {'cid' : cand_id, 'cycle' : 2020,
-                              'apikey' : OPEN_SECRETS_API_KEY}
-    top_industries_response = requests.get(top_industries_url,
-                                           top_industries_payload)
-    top_industry_root = ET.fromstring(top_industries_response)
-
-    list_industry = []
-
-    for industry in top_industry_root.iter('industry'):
-            dict_industries = industry_name.attrib
-            list_industry.append(dict_industries)
-    pass
 
 @app.route('/search')
 def search_info_by_member():
@@ -101,15 +79,41 @@ def search_info_by_member():
     return render_template('candidate.html')
 
 
-@app.route('/search_results')
+@app.route('/search-results')
 def member_results():
-    """ Provides info on candidate selected from search form """
+    """ Provides info on candidate selected from search form 
+        Am using OpenSecrets API """
 
-    official_last_name = request.args.get('last-name', '')
-    # db_last_name = Legislator.query.get()
+    # finding candidate's open secret id from db
+    # using who user selected on candidate search form
+    official_last_name = request.args.get('last-name')
+    state = request.args.get('state')
+    db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
+                                            Legislator.last_name!=None,
+                                            Legislator.state==state).first()
+    opensecrets = db_last_name.opensecrets_id
 
-    return render_template('candidate_results.html', last_name=db_last_name)
 
+    top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
+    top_industries_payload = {'cid' : opensecrets, 'cycle' : 2020,
+                              'apikey' : OPEN_SECRETS_API_KEY}
+    top_industries_response = requests.get(top_industries_url,
+                                           top_industries_payload)
+    top_industry_root = ET.fromstring(top_industries_response.content)
+
+    list_industry = []
+
+    for industry in top_industry_root.iter('industry'):
+            dict_industries = industry.attrib
+            list_industry.append(dict_industries)
+
+    return render_template('candidate_results.html',
+                           candidate_contributions=list_industry)
+
+
+
+
+########### below is info for using Google's Civic Info API ##############   
 # @app.route('/votes')
 # def vote_by_official():
 #     """ Finding votes official made on bills in category user selected. """
@@ -183,4 +187,5 @@ def member_results():
 
 if __name__ == '__main__':
     app.debug = True
+    connect_to_db(app)
     app.run(host='0.0.0.0')
