@@ -12,7 +12,9 @@ class Legislator(db.Model):
     __tablename__ = "current_legislators"
 
     legislator_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    last_name = db.Column(db.String(25), nullable=False)
     full_name = db.Column(db.String(200), nullable=False)
+    state = db.Column(db.String(20), nullable=False)
     party = db.Column(db.String(50), nullable=False)
     opensecrets_id = db.Column(db.String(10), nullable=True)
     govtrack_id = db.Column(db.Integer, nullable=False)

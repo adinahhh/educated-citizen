@@ -54,14 +54,17 @@ def load_legislators():
     i = 0
 
     for key in legislator_dict:
+        last_name = legislator_dict[i]['name']['last']
         full_name = legislator_dict[i]['name']['official_full']
+        state = legislator_dict[i]['terms'][0]['state']
         party = legislator_dict[i]['terms'][0]['party']
         opensecrets_id = legislator_dict[i]['id'].get('opensecrets', 0)
         govtrack_id = legislator_dict[i]['id']['govtrack']
         votesmart_id = legislator_dict[i]['id'].get('votesmart', 0)
         i += 1
 
-        legislator = Legislator(full_name=full_name, party=party,
+        legislator = Legislator(last_name=last_name, full_name=full_name,
+                                state=state, party=party,
                                 opensecrets_id=opensecrets_id,
                                 govtrack_id=govtrack_id,
                                 votesmart_id=votesmart_id)

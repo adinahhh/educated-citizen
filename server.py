@@ -5,6 +5,8 @@ from pprint import pformat
 import os
 import requests
 
+from model import Legislator, connect_to_db, db
+
 app = Flask(__name__)
 app.secret_key = 'SECRETSECRETSECRET'
 
@@ -77,6 +79,7 @@ def top_industries_by_member():
     top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
     # unclear how I am having user obtain candidate id (cid)
     # can this be from a user event? for now I am hardcoding this
+    # could be from a form the user searches for candidate?
     cand_id = 'N00003535'
     top_industries_payload = {'cid' : cand_id, 'cycle' : 2020,
                               'apikey' : OPEN_SECRETS_API_KEY}
@@ -91,8 +94,21 @@ def top_industries_by_member():
             list_industry.append(dict_industries)
     pass
 
-    # 3/17 need to make an html file to route this
+@app.route('/search')
+def search_info_by_member():
+    """ Search form; asks for candidate's last name """
 
+    return render_template('candidate.html')
+
+
+@app.route('/search_results')
+def member_results():
+    """ Provides info on candidate selected from search form """
+
+    official_last_name = request.args.get('last-name', '')
+    # db_last_name = Legislator.query.get()
+
+    return render_template('candidate_results.html', last_name=db_last_name)
 
 # @app.route('/votes')
 # def vote_by_official():
