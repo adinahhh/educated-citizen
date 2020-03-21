@@ -93,6 +93,7 @@ def member_results():
                                             Legislator.last_name!=None,
                                             Legislator.state==state).first()
     opensecrets = db_last_name.opensecrets_id
+    full_name = db_last_name.full_name
 
 
     top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
@@ -105,11 +106,17 @@ def member_results():
     list_industry = []
 
     for industry in top_industry_root.iter('industry'):
-            dict_industries = industry.attrib
-            list_industry.append(dict_industries)
+        dict_industries = {
+        "Industry Name" : industry.attrib['industry_name'],
+        "Individual Contributors": industry.attrib['indivs'],
+        "PACs" : industry.attrib['pacs'],
+        "Total" : industry.attrib['total']
+        }
+        list_industry.append(dict_industries)
 
     return render_template('candidate_results.html',
-                           candidate_contributions=list_industry)
+                           candidate_contributions=list_industry,
+                           full_name=full_name)
 
 
 
