@@ -73,7 +73,7 @@ def find_elected_officials():
 
 
 @app.route('/search')
-def search_info_by_member():
+def search_contributions_by_member():
     """ Search form; asks for candidate's last name """
 
     return render_template('candidate.html')
@@ -81,20 +81,22 @@ def search_info_by_member():
 
 @app.route('/search-results')
 def member_results():
-    """ Provides info on candidate selected from search form 
+    """ Provides contribution info on candidate selected from search form 
         Am using OpenSecrets API """
 
     # finding candidate's open secret id from db
     # using who user selected on candidate search form
     official_last_name = request.args.get('last-name')
     state = request.args.get('state')
-    # one legislator in db has a null value, accounting for that below
+    # one legislator in db has a null opensecrets value, accounting for this below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
-                                            Legislator.last_name!=None,
-                                            Legislator.state==state).first()
+                                           Legislator.opensecrets_id!=None,
+                                           Legislator.state==state).first()
     opensecrets = db_last_name.opensecrets_id
     full_name = db_last_name.full_name
 
+    # *** need to set up flash message for if opensecrets id is null;
+    # will redirect user back to /search page
 
     top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
     top_industries_payload = {'cid' : opensecrets, 'cycle' : 2020,
@@ -118,8 +120,40 @@ def member_results():
                            candidate_contributions=list_industry,
                            full_name=full_name)
 
+@app.route('/votes-by-topic')
+def search_votes_by_member():
+    """ Search form; user selects a candidate and category to get candidate's votes """
+    
+    return render_template('voting.html')
+
+app.route('/official-votes')
+def votes_by_official():
+    """Allows user to see votes by candidate using VoteSmart API based on which
+    topic user selected in form"""
+
+    official_last_name = request.args.get('last-name')
+    state = request.args.get('state')
+    # a couple legislators in db has a null value, accounting for that below
+    db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
+                                            Legislator.votesmart_id!=None,
+                                            Legislator.state==state).first()
+    votesmart = db_last_name.votesmart_id
+
+    # *** need to set up flash message for if opensecrets id is null;
+    # will redirect user back to /search page
 
 
+    category = request.args.get('category')
+
+    votes_official_url = 'http://api.votesmart.org/Votes.getByOfficial'
+    votes_official_payload = {'key' : VOTESMART_API_KEY, 
+                              'candidateId' : votesmart,
+                              'categoryId': category}
+    votes_official_response = requests.get(votes_official_url, 
+                                           params=votes_official_payload)
+    voting_record_root = ET.fromstring(votes_official_response.content)
+
+    pass
 
 ########### below is info for using Google's Civic Info API ##############   
 # @app.route('/votes')

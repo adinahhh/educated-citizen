@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Elected official info{% endblock %}
+
+{% block content %}
+
+<h2>Contribution information for {{ full_name }}:</h2>
+
+    <h4>Candidate Contributions by Industry:</h4>
+        {% for industry in candidate_contributions %}
+        <ul>{% for key, value in industry.items() %}</ul>
+        <br>
+            {{ key }}: {{ value }}
+            {% endfor %}
+        {% endfor %}
+
+{% endblock %}
