@@ -146,11 +146,6 @@ def votes_by_official():
     votesmart = db_last_name.votesmart_id
     full_name = db_last_name.full_name
 
-    # *** need to set up flash message for if opensecrets id is null;
-    # or if the state does not match last name in DB
-    # will redirect user back to /search page
-
-
     category = request.args.get('category')
 
     votes_official_url = 'http://api.votesmart.org/Votes.getByOfficial'
@@ -164,7 +159,7 @@ def votes_by_official():
     bill_list = []
     index = 1
 
-    for bill in voting_record_root.iter('bills'):
+    for bill in voting_record_root.iter('bill'):
         dict_of_votes = {
         "bill number": voting_record_root[index][1].text,
         "title" : voting_record_root[index][2].text,
