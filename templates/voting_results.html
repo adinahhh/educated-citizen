@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Elected official info{% endblock %}
+
+{% block content %}
+
+<h2>Voting records information for {{ full_name }}:</h2>
+
+    <h4>Bills:</h4>
+        {% for bill in bill_list %}
+        <ul>{% for key, value in bill.items() %}</ul>
+        <br>
+            {{ key }}: {{ value }}
+            {% endfor %}
+        {% endfor %}
+
+{% endblock %}
