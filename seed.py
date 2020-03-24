@@ -54,7 +54,7 @@ def load_legislators():
     i = 0
 
     for key in legislator_dict:
-        last_name = legislator_dict[i]['name']['last']
+        last_name = legislator_dict[i]['name']['last'].upper()
         full_name = legislator_dict[i]['name']['official_full']
         state = legislator_dict[i]['terms'][0]['state']
         party = legislator_dict[i]['terms'][0]['party']

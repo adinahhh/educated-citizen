@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect
 
 import xml.etree.ElementTree as ET
 from pprint import pformat
@@ -64,7 +64,7 @@ def find_elected_officials():
         dict_of_bills = {
         "bill_number": bill.find('billNumber').text,
         "bill_title": bill.find('title').text,
-        "bill_type": bill.find('type').text,
+        "bill_type": bill.find('type').text
         }
         list_bills.append(dict_of_bills)
         
@@ -86,17 +86,19 @@ def member_results():
 
     # finding candidate's open secret id from db
     # using who user selected on candidate search form
-    official_last_name = request.args.get('last-name')
+    official_last_name = request.args.get('last-name').upper()
     state = request.args.get('state')
+
     # one legislator in db has a null opensecrets value, accounting for this below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
                                            Legislator.opensecrets_id!=None,
                                            Legislator.state==state).first()
+    if not db_last_name:
+        flash('The last name entered and state selected did not match an existing legislator. Please search again.')
+        return redirect('/search')
     opensecrets = db_last_name.opensecrets_id
     full_name = db_last_name.full_name
 
-    # *** need to set up flash message for if opensecrets id is null;
-    # will redirect user back to /search page
 
     top_industries_url = 'https://www.opensecrets.org/api/?method=candIndustry'
     top_industries_payload = {'cid' : opensecrets, 'cycle' : 2020,
@@ -117,8 +119,8 @@ def member_results():
         list_industry.append(dict_industries)
 
     return render_template('candidate_results.html',
-                           candidate_contributions=list_industry,
-                           full_name=full_name)
+                       candidate_contributions=list_industry,
+                       full_name=full_name)
 
 @app.route('/votes-by-topic')
 def search_votes_by_member():
@@ -126,20 +128,26 @@ def search_votes_by_member():
     
     return render_template('voting.html')
 
-app.route('/official-votes')
+@app.route('/official-votes')
 def votes_by_official():
     """Allows user to see votes by candidate using VoteSmart API based on which
     topic user selected in form"""
-
-    official_last_name = request.args.get('last-name')
+ 
+    official_last_name = request.args.get('last-name').upper()
     state = request.args.get('state')
     # a couple legislators in db has a null value, accounting for that below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
-                                            Legislator.votesmart_id!=None,
-                                            Legislator.state==state).first()
+                                           Legislator.votesmart_id!=None,
+                                           Legislator.state==state).first()
+    # error handling below:
+    if not db_last_name:
+        flash('The search did not return a valid result. Please try again.')
+        return redirect('/votes-by-topic')
     votesmart = db_last_name.votesmart_id
+    full_name = db_last_name.full_name
 
     # *** need to set up flash message for if opensecrets id is null;
+    # or if the state does not match last name in DB
     # will redirect user back to /search page
 
 
@@ -153,7 +161,21 @@ def votes_by_official():
                                            params=votes_official_payload)
     voting_record_root = ET.fromstring(votes_official_response.content)
 
-    pass
+    bill_list = []
+    index = 1
+
+    for bill in voting_record_root.iter('bills'):
+        dict_of_votes = {
+        "bill number": voting_record_root[index][1].text,
+        "title" : voting_record_root[index][2].text,
+        "passage": voting_record_root[index][8].text,
+        "vote": voting_record_root[index][9].text,
+        }
+        index += 1
+        bill_list.append(dict_of_votes)
+
+    return render_template('voting_results.html', full_name=full_name,
+                           bill_list=bill_list)
 
 ########### below is info for using Google's Civic Info API ##############   
 # @app.route('/votes')
