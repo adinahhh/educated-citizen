@@ -4,14 +4,21 @@
 
 {% block content %}
 
-<h2>Voting records information for {{ full_name }}:</h2>
+<h2>Voting records information for Rep {{ full_name }}:</h2>
 
-    <h4>Bills:</h4>
+    <h4 id="bills">Bills:</h4>
         {% for bill in bill_list %}
         <ul>{% for key, value in bill.items() %}</ul>
         <br>
             {{ key }}: {{ value }}
             {% endfor %}
         {% endfor %}
+
+    <h3>Would you like to contact Rep {{ last_name }} about her votes?</h3>
+        <div id="contactLegis">Click here for more contact information</div>
+        <div id="successAlert" style="display:none;">{{ party }}</div>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/ajax.js"></script>
 
 {% endblock %}

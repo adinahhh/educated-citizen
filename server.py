@@ -146,6 +146,11 @@ def votes_by_official():
     votesmart = db_last_name.votesmart_id
     full_name = db_last_name.full_name
 
+    # using this to test ajax
+    last_name = db_last_name.last_name
+    party = db_last_name.party
+
+
     category = request.args.get('category')
 
     votes_official_url = 'http://api.votesmart.org/Votes.getByOfficial'
@@ -170,7 +175,7 @@ def votes_by_official():
         bill_list.append(dict_of_votes)
 
     return render_template('voting_results.html', full_name=full_name,
-                           bill_list=bill_list)
+                           bill_list=bill_list, last_name=last_name, party=party)
 
 ########### below is info for using Google's Civic Info API ##############   
 # @app.route('/votes')
