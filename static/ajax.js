@@ -85,12 +85,26 @@
 //             }
 // })
 
-function show(elementId) { 
-    document.getElementById("phone").style.display="none";
-    document.getElementById("website").style.display="none";
-    document.getElementById(elementId).style.display="block";
+// this code does work but its not an ajax request
+// function show(elementId) { 
+//     document.getElementById("phone").style.display="none";
+//     document.getElementById("website").style.display="none";
+//     document.getElementById(elementId).style.display="block";
+// }
+
+// below code does work as an event listener:
+function showContactInfo(results) {
+    $('#contactLegis').hide();
+    $('#phone').show();
 }
 
+// $('#contactLegis').on('click', showContactInfo);
+
+function usingAjax(evt) {
+    $.get('/votes-by-topic', showContactInfo);
+}
+
+$('#contactLegis').on('click', usingAjax);
 
 
 

@@ -128,15 +128,15 @@ def search_votes_by_member():
     
     return render_template('voting.html')
 
-@app.route('/using-ajax')
-def ajax_pls_work():
+# @app.route('/using-ajax')
+# def ajax_pls_work():
 
-    # db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
-    #                                        Legislator.votesmart_id!=None,
-    #                                        Legislator.state==state).first()
-    phone = votes_by_official(db_last_name.phone)
+#     # db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
+#     #                                        Legislator.votesmart_id!=None,
+#     #                                        Legislator.state==state).first()
+#     phone = votes_by_official(db_last_name.phone)
 
-    return jsonify({'phone': phone})
+#     return jsonify({'phone': phone})
 
 
 @app.route('/official-votes')
