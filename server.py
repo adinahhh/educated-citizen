@@ -89,7 +89,7 @@ def member_results():
     last_name = request.args.get('last-name')
     official_last_name = last_name.upper()
     state = request.args.get('state')
-
+    print(last_name)
     # one legislator in db has a null opensecrets value, accounting for this below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
                                            Legislator.opensecrets_id!=None,
@@ -126,23 +126,13 @@ def member_results():
 
     return render_template('candidate_results.html',
                        candidate_contributions=list_industry,
-                       full_name=full_name)
+                       full_name=full_name, phone=phone, last_name=last_name)
 
 @app.route('/votes-by-topic')
 def search_votes_by_member():
     """ Search form; user selects a candidate and category to get candidate's votes """
     
     return render_template('voting.html')
-
-# @app.route('/using-ajax')
-# def ajax_pls_work():
-
-#     # db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
-#     #                                        Legislator.votesmart_id!=None,
-#     #                                        Legislator.state==state).first()
-#     phone = votes_by_official(db_last_name.phone)
-
-#     return jsonify({'phone': phone})
 
 
 @app.route('/official-votes')
