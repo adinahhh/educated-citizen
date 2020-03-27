@@ -86,7 +86,7 @@ def member_results():
 
     # finding candidate's open secret id from db
     # using who user selected on candidate search form
-    official_last_name = request.args.get('last-name')
+    official_last_name = request.args.get('last-name').upper()
     state = request.args.get('state')
 
     # one legislator in db has a null opensecrets value, accounting for this below
@@ -130,7 +130,14 @@ def search_votes_by_member():
 
 @app.route('/using-ajax')
 def ajax_pls_work():
-    return 'AJAX WORKS'
+
+    # db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
+    #                                        Legislator.votesmart_id!=None,
+    #                                        Legislator.state==state).first()
+    phone = votes_by_official(db_last_name.phone)
+
+    return jsonify({'phone': phone})
+
 
 @app.route('/official-votes')
 def votes_by_official():
@@ -153,7 +160,8 @@ def votes_by_official():
 
     # using this to test ajax
     last_name = db_last_name.last_name
-    party = db_last_name.party
+    phone = db_last_name.phone
+    website = db_last_name.website
 
 
     category = request.args.get('category')
@@ -180,7 +188,7 @@ def votes_by_official():
         bill_list.append(dict_of_votes)
 
     return render_template('voting_results.html', full_name=full_name,
-                           bill_list=bill_list, last_name=last_name, party=party)
+                           bill_list=bill_list, last_name=last_name, phone=phone)
 
 ########### below is info for using Google's Civic Info API ##############   
 # @app.route('/votes')

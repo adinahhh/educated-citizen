@@ -16,11 +16,17 @@
 
     <h3>Would you like to contact Rep {{ last_name }} about her votes?</h3>
         <div id="contactLegis">Click here for more contact information</div>
-        <div id="successAlert"></div>
-        <form id="contact"> 
-            <input type="hidden" value="{{ last_name }}">
+<!--         <div id="successAlert"></div>
+        <form id="contact" method="GET" action="/using-ajax"> 
+            <input type="hidden" id="phone" value="{{ phone }}">
+            <input type="hidden" id="website" value="{{ website }}">
             <input type="submit" value="yes">
-            </form>
+            </form> -->
+        <button type="button" onclick="show('phone');">phone</button>
+        <button type="button" onclick="show('website');">website</button>
+
+        <div id="phone" style="display:none">{{ phone }}</div>
+        <div id="website" style="display:none">{{ website }}</div>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/ajax.js"></script>
