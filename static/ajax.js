@@ -92,13 +92,11 @@
 //     document.getElementById(elementId).style.display="block";
 // }
 
-// below code does work as an event listener:
+// for voting records page
 function showContactInfo(results) {
     $('#contactLegis').hide();
     $('#phone').show();
 }
-
-// $('#contactLegis').on('click', showContactInfo);
 
 function usingAjax(evt) {
     $.get('/votes-by-topic', showContactInfo);
@@ -106,9 +104,17 @@ function usingAjax(evt) {
 
 $('#contactLegis').on('click', usingAjax);
 
+// for contribution page
+function showLegisInfo(results) {
+    $('#reachLegis').hide();
+    $('#phone-number').show();
+}
 
+function phoneAjax(evt) {
+    $.get('/search', showLegisInfo);
+}
 
-
+$('#reachLegis').on('click', phoneAjax);
 
 
 
