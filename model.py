@@ -19,6 +19,8 @@ class Legislator(db.Model):
     opensecrets_id = db.Column(db.String(10), nullable=True)
     govtrack_id = db.Column(db.Integer, nullable=False)
     votesmart_id = db.Column(db.Integer, nullable=True)
+    phone = db.Column(db.String(25), nullable=True)
+    website = db.Column(db.String(150), nullable=True)
 
     def __repr__(self):
         """ provide info on legislator."""

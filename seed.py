@@ -61,13 +61,16 @@ def load_legislators():
         opensecrets_id = legislator_dict[i]['id'].get('opensecrets', None)
         govtrack_id = legislator_dict[i]['id']['govtrack']
         votesmart_id = legislator_dict[i]['id'].get('votesmart', None)
+        phone = legislator_dict[i]['terms'][-1].get('phone', None)
+        website = legislator_dict[i]['terms'][-1].get('rss_url', None)
         i += 1
 
         legislator = Legislator(last_name=last_name, full_name=full_name,
                                 state=state, party=party,
                                 opensecrets_id=opensecrets_id,
                                 govtrack_id=govtrack_id,
-                                votesmart_id=votesmart_id)
+                                votesmart_id=votesmart_id, phone=phone,
+                                website=website)
 
         db.session.add(legislator)
 

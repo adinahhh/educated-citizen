@@ -16,7 +16,11 @@
 
     <h3>Would you like to contact Rep {{ last_name }} about her votes?</h3>
         <div id="contactLegis">Click here for more contact information</div>
-        <div id="successAlert" style="display:none;">{{ party }}</div>
+        <div id="successAlert"></div>
+        <form id="contact"> 
+            <input type="hidden" value="{{ last_name }}">
+            <input type="submit" value="yes">
+            </form>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/ajax.js"></script>

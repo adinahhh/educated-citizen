@@ -86,7 +86,7 @@ def member_results():
 
     # finding candidate's open secret id from db
     # using who user selected on candidate search form
-    official_last_name = request.args.get('last-name').upper()
+    official_last_name = request.args.get('last-name')
     state = request.args.get('state')
 
     # one legislator in db has a null opensecrets value, accounting for this below
@@ -128,12 +128,17 @@ def search_votes_by_member():
     
     return render_template('voting.html')
 
+@app.route('/using-ajax')
+def ajax_pls_work():
+    return 'AJAX WORKS'
+
 @app.route('/official-votes')
 def votes_by_official():
     """Allows user to see votes by candidate using VoteSmart API based on which
     topic user selected in form"""
  
-    official_last_name = request.args.get('last-name').upper()
+    last_name = request.args.get('last-name')
+    official_last_name = last_name.upper()
     state = request.args.get('state')
     # a couple legislators in db has a null value, accounting for that below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,

@@ -1,11 +1,13 @@
 "use strict";
 
 // Trying out an event listener
-// const button = document.querySelector('#bills');
+// const button = document.querySelector('#contactLegis');
 
 // button.addEventListener('click', () => {
 //     alert('Great work!');
 // });
+
+
 
 // const button = document.querySelector('#bills');
 
@@ -42,10 +44,25 @@
 
 // #### Trying to show successAlert id in voting_results.html
 // unclear how to use show method 
-$('#contactLegis').on('click', () => {
+
+// function replaceFortune(results) {
+//     $("#successAlert").html(results);
+// }
+
+$('#contactLegis').on('click', (evt) => {
     evt.preventDefault();
 
-    $.get('/official-votes', (res) => {
-    $('#successAlert').text(data).show();
+    $.get('/using-ajax', (res) => {
+    //$('#successAlert').text(res).show();
+    alert(res);
     });
 });
+
+
+
+
+
+
+
+
+
