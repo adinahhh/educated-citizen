@@ -74,5 +74,15 @@
     <input type="submit">
   </form>
 
+  <script>
+      // trying out a plug in
+var autocomplete = {
+    // url: "seed_data/legislators-current.json"
+    data: ["omar", "feinstein", "sanders"]
+
+};
+
+$("#last-name").easyAutocomplete(autocomplete);
+  </script>
 
 {% endblock %}

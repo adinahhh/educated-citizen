@@ -9,28 +9,6 @@ from model import connect_to_db, db
 from server import app
 import json
 
-# def load_legislators():
-    # """ Load legislators from data file into database."""
-
-    # full_name = []
-    # party = []
-    # govtrack_id = []
-
-    # for legis in legislature_json:
-
-    #     full_name.append(legis['name']['official_full'])
-    #     party.append(legis['terms'][0]['party'])
-    #     # opensecrets_id = legis['id']['opensecrets']
-    #     govtrack_id.append(legis['id']['govtrack'])
-    #     # votesmart_id = legis['id']['votesmart']
-
-    #     legislator = Legislator(full_name=full_name, party=party, 
-    #                             govtrack_id=govtrack_id)
-
-    #     # adding to session to store it
-    #     db.session.add(legislator)
-
-    # db.session.commit()
 
 def json_reader(file_path):
     """ open and loads json files """
