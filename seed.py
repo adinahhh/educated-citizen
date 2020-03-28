@@ -3,8 +3,6 @@
 from sqlalchemy import func
 from model import Legislator
 
-from legislators_current import legislature_json
-
 from model import connect_to_db, db
 from server import app
 import json

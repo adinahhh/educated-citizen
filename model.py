@@ -32,7 +32,6 @@ def connect_to_db(app):
     """ Connect database to Flask app."""
 
     # Configure to use my PstgreSQL database
-    # ***come back to this to make sure db name is correct ***
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///legislature'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app

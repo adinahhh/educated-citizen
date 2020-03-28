@@ -6,14 +6,14 @@
 
 <h2>Contribution information for {{ full_name }}:</h2>
 
-    <h4>Candidate Contributions by Industry:</h4>
+    <h4>Legislator's Contributions by Industry:</h4>
         {% for industry in candidate_contributions %}
         <ul>{% for key, value in industry.items() %}</ul>
         <br>
             {{ key }}: {{ value }}
             {% endfor %}
         {% endfor %}
-        
+
     <h3>Are you concerned about where Rep {{ last_name }} is getting contributions?</h3>
         <div id="reachLegis">Click here to contact your rep!</div>
         <div id="phone-number" hidden>Your rep's phone number is {{ phone }} </div>
