@@ -28,11 +28,22 @@ class Legislator(db.Model):
         return f"Legislator: {self.full_name} party: {self.party}"
 
 
-def connect_to_db(app):
+##### getting direction from Testing lab below #####
+def testing_data():
+    """ create sample data for running tests """
+    legis = Legislator(last_name="Smith", full_name="Jane Smith", state="LA",
+                       party="Democrat", opensecrets_id="N00003535",
+                       govtrack_id=400050, votesmart_id=27018,
+                       phone="504-555-5555", website="wwww.google.com")
+    db.session.add(legis)
+    db.session.commit()
+
+
+def connect_to_db(app, db_uri="postgresql:///legislature"):
     """ Connect database to Flask app."""
 
     # Configure to use my PstgreSQL database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///legislature'
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)

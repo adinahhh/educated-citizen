@@ -1,7 +1,7 @@
 import unittest
 
 from server import app
-from model import db, Legislator, connect_to_db
+from model import db, testing_data, connect_to_db
 
 class Tests(unittest.TestCase):
     """ Tests routes for educated citizen app."""
@@ -30,18 +30,34 @@ class Tests(unittest.TestCase):
         self.assertIn(b'<label>Please enter legislator\'s last name:</label>',
                       result.data)
 
-    # def test_contributions_member_route(self):
-    #     """ Tests page that shows all contribution info for a legislator """
-
-    #     result = self.client.get("/search-results", query_string={"last_name": "Omar", "state": "MN"})
-    #     self.assertIn(b'<h4>Legislator\'s Contributions by Industry:</h4>', result.data)
-    #     self.assertEqual(result.status_code, 200)
-
     def test_votes_by_issue_route(self):
         """ This tests search page for legislator's voting records. """
 
         result = self.client.get('votes-by-topic')
         self.assertIn(b'<label>Please enter legislator\'s last name:</label>', result.data)
+
+
+class TestingMyDatabase(unittest.TestCase):
+    """ Flask test that use my database. """
+
+    def setUp(self):
+
+        self.client = app.test_client()
+        app.config['TESTING'] = True
+
+        # Connect to test database (uncomment when testing database)
+        connect_to_db(app, "postgresql:///testdb")
+
+        # Create tables and add in data (uncomment when testing database)
+        db.create_all()
+        testing_data()
+
+    # def test_contributions_member_route(self):
+    #     """ Tests page that shows all contribution info for a legislator """
+
+    #     result = self.client.get("/search-results", query_string={"last_name": "SMITH", "state": "LA"})
+    #     self.assertIn(b'<h4>Legislator\'s Contributions by Industry:</h4>', result.data)
+    #     self.assertEqual(result.status_code, 200)
 
     # def test_voting_record_results(self):
     #     """ For the page of results of a legislator's previous votes """
@@ -50,31 +66,14 @@ class Tests(unittest.TestCase):
     #     self.assertIn(b'Voting records information', result.data)
     #     self.assertEqual(result.status_code, 200)
 
+    def tearDown(self):
+        """Do at end of every test."""
 
-# class TestingMyDatabase(unittest.TestCase):
-#     """ Flask test that use my database. """
+        # (uncomment when testing database)
+        db.session.close()
+        db.drop_all()
 
-#     def setUp(self):
-#         """Stuff to do before every test."""
 
-#         self.client = app.test_client()
-#         app.config['TESTING'] = True
-
-#         # Connect to test database (uncomment when testing database)
-#         connect_to_db(app, "postgresql:///testdb")
-
-#         # Create tables and add in data (uncomment when testing database)
-#         db.create_all()
-#         example_data()
-
-#     def tearDown(self):
-#     """Do at end of every test."""
-
-#         # (uncomment when testing database)
-#         db.session.close()
-#         db.drop_all()
-
-#     def test_legis_database(self):
 
 if __name__ == "__main__":
     unittest.main()
