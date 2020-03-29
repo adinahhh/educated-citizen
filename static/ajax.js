@@ -4,6 +4,7 @@
 function showContactInfo(results) {
     $('#contactLegis').hide();
     $('#phone').show();
+    $('#website').show();
 }
 
 function usingAjax(evt) {

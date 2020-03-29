@@ -3,14 +3,9 @@
 <head>
   <title>{% block title %}{% endblock %}</title>
 
+<!--   my internal css  -->
   <link rel="stylesheet" href="/static/styles.css">
-  <script src="hb-project/node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.min.js"></script>
-  <script src="hb-project/node_modules/easy-autocomplete/dist/easy-autocomplete.min.css"></script>
-<!-- jQuery CDN -->
-  <script
-  src="http://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+
   {% block head %}{% endblock %}
 </head>
 
@@ -24,6 +19,12 @@
 
     <!-- This is where the main content goes. -->
     {% block content %}{% endblock %}
+
+<!-- jQuery CDN -->
+  <script
+  src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 
 </body>
 </html>
