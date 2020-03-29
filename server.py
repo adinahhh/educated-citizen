@@ -100,6 +100,10 @@ def member_results():
     opensecrets = db_last_name.opensecrets_id
     full_name = db_last_name.full_name
 
+    if not opensecrets:
+        flash('There are no contribution records for this member. Please try another search.')
+        return redirect('/search')
+
     # using this for ajax request
     last_name = db_last_name.last_name.lower().capitalize()
     phone = db_last_name.phone
@@ -149,9 +153,14 @@ def votes_by_official():
                                            Legislator.state==state).first()
     # error handling below:
     if not db_last_name:
-        flash('The search did not return a valid result. Please try again.')
+        flash('The last name entered and state selected did not match an existing legislator. Please try again.')
         return redirect('/votes-by-topic')
     votesmart = db_last_name.votesmart_id
+
+    if not votesmart:
+        flash('The search did not return a valid result. Please try again.')
+        return redirect('/votes-by-topic')
+
     full_name = db_last_name.full_name
 
     # using this for ajax request
