@@ -1,7 +1,8 @@
 import unittest
 
 from server import app
-from model import db, testing_data, connect_to_db
+from model import db, Legislator, connect_to_db
+from seed import load_legislators
 
 class Tests(unittest.TestCase):
     """ Tests routes for educated citizen app."""
@@ -50,7 +51,7 @@ class TestingMyDatabase(unittest.TestCase):
 
         # Create tables and add in data (uncomment when testing database)
         db.create_all()
-        testing_data()
+        db.testing_data()
 
     # def test_contributions_member_route(self):
     #     """ Tests page that shows all contribution info for a legislator """
@@ -62,7 +63,7 @@ class TestingMyDatabase(unittest.TestCase):
     # def test_voting_record_results(self):
     #     """ For the page of results of a legislator's previous votes """
 
-    #     result = self.client.get('official-votes')
+    #     result = self.client.get('official-votes', query_string={"last_name": "SMITH", "state": "LA"})
     #     self.assertIn(b'Voting records information', result.data)
     #     self.assertEqual(result.status_code, 200)
 
@@ -74,6 +75,7 @@ class TestingMyDatabase(unittest.TestCase):
         db.drop_all()
 
 
-
 if __name__ == "__main__":
     unittest.main()
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
