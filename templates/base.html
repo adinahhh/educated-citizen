@@ -2,12 +2,18 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
+
+<!-- jQuery CDN -->
+  <script src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" 
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <!-- custom CSS -->
-  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/styles.css">
 
 </head>
 <body>
@@ -26,12 +32,6 @@
 
     <!-- This is where the main content goes. -->
     {% block content %}{% endblock %}
-
-<!-- jQuery CDN -->
-  <script
-  src="http://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
 
 </body>
 </html>
