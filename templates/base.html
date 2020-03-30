@@ -2,14 +2,21 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<!--   my internal css  -->
-  <link rel="stylesheet" href="/static/styles.css">
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="/static/css/styles.css">
 
-  {% block head %}{% endblock %}
 </head>
-
 <body>
+  {% include 'nav.html' %}
+
+  {% block body %}
+<!-- BODY GOES HERE -->
+  {% endblock %}
+
     <!-- Show flashed messages -->
     {% with messages = get_flashed_messages() %}
         {% for message in messages %}

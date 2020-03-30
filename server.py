@@ -10,7 +10,6 @@ from model import Legislator, connect_to_db, db
 app = Flask(__name__)
 app.secret_key = 'SECRETSECRETSECRET'
 
-API_KEY = os.environ['CIVIC_API_KEY']
 VOTESMART_API_KEY = os.environ['VOTESMART_API_KEY']
 OPEN_SECRETS_API_KEY = os.environ['OPEN_SECRETS_API_KEY']
 
