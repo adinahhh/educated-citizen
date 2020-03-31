@@ -8,6 +8,7 @@
 * PostgreSQL
 * SQLAlchemy
 * HTML
+* XML
 * CSS
 * Bootstrap
 * jQuery
@@ -36,9 +37,9 @@ The final feature of this app allows the user to view a legislator's top contrib
 
 ### Future Implementations
 Several features have been planned out to grow Educated Citizen app:
-> * autocomplete feature for forms
-> * charts to better show contribution information
-> * addition of bill summaries 
+* autocomplete feature for forms
+* charts to better show contribution information
+* addition of bill summaries 
 
 ### Installation
 You are welcome to run this app on your own machine.
@@ -51,6 +52,7 @@ https://github.com/adinahhh/educated-citizen.git
 Create a virtual environment inside your project directory:
 
 `virtualenv env`
+
 `source env/bin/activate`
 
 Next, install dependencies:
