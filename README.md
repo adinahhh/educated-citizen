@@ -1,10 +1,8 @@
 # Educated Citizen Project
 
-## Features
+## About Me:
 
-## About Me
-
-## Technologies
+## Technologies:
 * Python
 * Flask
 * PostgreSQL
@@ -15,7 +13,7 @@
 * jQuery
 * Javascript (AJAX, JSON)
 
-## Features
+## Features:
 
 ### Landing Page
 
@@ -38,9 +36,9 @@ The final feature of this app allows the user to view a legislator's top contrib
 
 ### Future Implementations
 Several features have been planned out to grow Educated Citizen app:
-    * autocomplete feature for forms
-    * charts to better show contribution information
-    * addition of bill summaries 
+> * autocomplete feature for forms
+> * charts to better show contribution information
+> * addition of bill summaries 
 
 ### Installation
 You are welcome to run this app on your own machine.
@@ -51,15 +49,17 @@ Clone this repo:
 https://github.com/adinahhh/educated-citizen.git
 
 Create a virtual environment inside your project directory:
-`virtualenv env
-source env/bin/activate`
+
+`virtualenv env`
+`source env/bin/activate`
 
 Next, install dependencies:
+
 `pip3 install -r requirements.txt`
 
-Register for a key with [VoteSmart API](https://votesmart.org/share/api#.XoNy3ZNKjBJ)
+Register for a key with [VoteSmart API](https://votesmart.org/share/api#.XoNy3ZNKjBJ).
 
-Register for a key with [OpenSecrets API](https://www.opensecrets.org/open-data/api)
+Register for a key with [OpenSecrets API](https://www.opensecrets.org/open-data/api).
 
 Save your keys in `secrets.sh` file like below:
 
