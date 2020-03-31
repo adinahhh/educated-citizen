@@ -50,10 +50,10 @@ Clone this repo:
 https://github.com/adinahhh/educated-citizen.git
 
 Create a virtual environment inside your project directory:
-
-`virtualenv env`
-
-`source env/bin/activate`
+```
+virtualenv env
+source env/bin/activate
+```
 
 Next, install dependencies:
 
@@ -63,13 +63,13 @@ Register for a key with [VoteSmart API](https://votesmart.org/share/api#.XoNy3ZN
 
 Register for a key with [OpenSecrets API](https://www.opensecrets.org/open-data/api).
 
-Save your keys in **`secrets.sh`** file like below:
+Create a **`secrets.sh`** file. Save your keys in the file using the syntax below:
 ```
 export VOTESMART_API_KEY="your_new_key"
 export OPEN_SECRETS_API_KEY="second_new_key"
 ```
 
-Activate your secrets.sh file into the new terminal session using command:
+Activate your secrets.sh file into your current terminal session using command:
 `source secrets.sh`
 
 Create the database using the following commands:
@@ -80,14 +80,31 @@ python3 seed.py
 ```
 
 Run the app locally on your machine:
+
 `python3 server.py`
 
 In a new tab or window, using address http://0.0.0.0:5000/ will pull up the Educated Citizen app.
 
--------
-unclear what to do with below info:
+## License:
 
-### **Planning:**
-Project board: https://github.com/adinahhh/educated-citizen
+MIT License
 
-Data Model in google drive: https://drive.google.com/open?id=1RQHNn84aayKCSCODIZT771bfV3PcZccs
+Copyright (c) [2020] [Whitney Zilton]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
