@@ -1,6 +1,11 @@
 # Educated Citizen Project
 
+It can be hard keeping track of who represents you. The Educated Citizen Project is here to help users learn more about their legislator's voting records and campaign contributions. VoteSmart API and OpenSecrets API are used to retrieve data on congressional representatives. This app was built using a Python/Flask backend and PostgreSQL database.
+
 ## About Me:
+
+Whitney comes from a background in banking, but has been interested in software engineering for a few years. Whitney began learning how to code with freeCodeCamp's platform, learning HTML, CSS, Sass, and Javascript. After obtaining their Responsive Web Design Certification, Whitney wanted to continue learning in a more structured classroom setting. In her spare time, she loves creating: DIY home projects, cooking and painting. Part of why she joined Hackbright is to learn how to create her own tech projects. 
+
 
 ## Technologies:
 * Python
@@ -35,13 +40,13 @@ The final feature of this app allows the user to view a legislator's top contrib
 < screenshot of contributions goes here >
 
 
-### Future Implementations
+## Future Implementations
 Several features have been planned out to grow Educated Citizen app:
 * autocomplete feature for forms
 * charts to better show contribution information
 * addition of bill summaries 
 
-### Installation
+## Installation
 You are welcome to run this app on your own machine.
 
 Install PostgresQL 
@@ -89,7 +94,7 @@ In a new tab or window, using address http://0.0.0.0:5000/ will pull up the Educ
 
 MIT License
 
-Copyright (c) [2020] [Whitney Zilton]
+Copyright (c) 2020 Whitney Zilton
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
