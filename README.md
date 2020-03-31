@@ -63,7 +63,26 @@ Register for a key with [VoteSmart API](https://votesmart.org/share/api#.XoNy3ZN
 
 Register for a key with [OpenSecrets API](https://www.opensecrets.org/open-data/api).
 
-Save your keys in `secrets.sh` file like below:
+Save your keys in **`secrets.sh`** file like below:
+```
+export VOTESMART_API_KEY="your_new_key"
+export OPEN_SECRETS_API_KEY="second_new_key"
+```
+
+Activate your secrets.sh file into the new terminal session using command:
+`source secrets.sh`
+
+Create the database using the following commands:
+```
+createdb legislature
+python3 model.py
+python3 seed.py
+```
+
+Run the app locally on your machine:
+`python3 server.py`
+
+In a new tab or window, using address http://0.0.0.0:5000/ will pull up the Educated Citizen app.
 
 -------
 unclear what to do with below info:
