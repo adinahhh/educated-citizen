@@ -6,17 +6,34 @@
 
 <h2>Voting records information for Rep {{ full_name }}:</h2>
 
-    <h4 id="bills">Bills:</h4>
-        {% for bill in bill_list %}
-        <ul>{% for key, value in bill.items() %}</ul>
-        <br>
-            {{ key }}: {{ value }}
-            {% endfor %}
+  <h4 id="bills">Bills:</h4>
+    {% for bill in bill_list %}
+    <ul>{% for key, value in bill.items() %}</ul>
+    <br>
+        {{ key }}: {{ value }}
         {% endfor %}
+    {% endfor %}
+  <br>
+  <br>
 
-    <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
-        <div id="contactLegis">Click here for more contact information</div>
-        <div id="phone" hidden>Your rep's phone number is {{ phone }} </div>
+  <div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Bill:</div>
+    <div class="card-body">
+      {% for bill in bill_list %}
+      <h4 class="card-title">Primary card title</h4>
+        {% for key, value in bill.items() %}
+      <p class="card-text"></p>
+        <br>
+        {{ key }}: {{ value }}
+        {% endfor %}
+    </div>
+      {% endfor %}
+  </div>
+
+<br>
+  <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
+    <div id="contactLegis">Click here for more contact information</div>
+    <div id="phone" hidden>Your rep's phone number is {{ phone }} </div>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/ajax.js"></script>
