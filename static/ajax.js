@@ -2,9 +2,8 @@
 
 // for voting records page
 function showContactInfo(results) {
-    $('#contactLegis').hide();
+    $('#contactLegis').toggle();
     $('#phone').show();
-    $('#website').show();
 }
 
 function usingAjax(evt) {
