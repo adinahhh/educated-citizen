@@ -3,95 +3,56 @@
 {% block title %}Legislator Lookup Tool{% endblock %}
 
 {% block content %}
-<body class="bg-image">
+<body>
 
-  <div class="bg-text">
-  <h4>Welcome to elected official lookup tool!</h4>
+  <div class="jumbotron">
 
   <br>
+  <p class="lead">It can be hard keeping track of who represents you. The Educated Citizen Project is here to help you learn more about your legislator's voting records and campaign contributions.</p>
   <br>
   <br>
-  <p>Learn more about who represents you</p>
-  <br>
-  <br>
+
   <form method="GET" action="/officials"> 
-    <label>Please enter your 5 digit zip code:</label>
-    <input type="text" id="zipcode" name="zipcode" maxlength="5" pattern="[0-9]{5}">
+    <fieldset>
+      <legend>Please fill out the form below:</legend>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Enter your 5 digit zip code:</label>
+        <div class="col-sm-10">
+          <input type="text" id="zipcode" name="zipcode" maxlength="5" pattern="[0-9]{5}" class="form-control-plaintext" value="55105" size="10">
+        </div>
+      </div>
 
-    <br>
-    <br>
-
-    Please select an issue that matters to you:
-    <select name="category">
-      <option value="2">Abortion</option>
-      <option value="7">Arts, Entertainment, and History</option>
-      <option value="13">Civil Liberties and Civil Rights</option>
-      <option value="20">Crime</option>
-      <option value="22">Defense</option>
-      <option value="25">Drugs</option>
-      <option value="3">Employment and Affirmative Action</option>
-      <option value="30">Environment</option>
-      <option value="69">Executive Branch</option>
-      <option value="32">Foreign Affairs</option>
-      <option value="90">Government Budget and Spending</option>
-      <option value="38">Health and Health Care</option>
-      <option value="30">Environment</option>
-      <option value="43">Labor Unions</option>
-      <option value="61">National Security</option>
-      <option value="53">Senior Citizens</option>
-      <option value="63">Trade</option>
-      <option value="64">Transportation</option>
-      <option value="68">Women</option>
-    </select>
       <br>
-    <input type="submit">
+      <div class="form-group">
+        <label>Select an issue that matters to you:</label>
+        <select class="form-control" name="category">
+          <option value="2">Abortion</option>
+          <option value="7">Arts, Entertainment, and History</option>
+          <option value="13">Civil Liberties and Civil Rights</option>
+          <option value="20">Crime</option>
+          <option value="22">Defense</option>
+          <option value="25">Drugs</option>
+          <option value="3">Employment and Affirmative Action</option>
+          <option value="30">Environment</option>
+          <option value="69">Executive Branch</option>
+          <option value="32">Foreign Affairs</option>
+          <option value="90">Government Budget and Spending</option>
+          <option value="38">Health and Health Care</option>
+          <option value="30">Environment</option>
+          <option value="43">Labor Unions</option>
+          <option value="61">National Security</option>
+          <option value="53">Senior Citizens</option>
+          <option value="63">Trade</option>
+          <option value="64">Transportation</option>
+          <option value="68">Women</option>
+        </select>
+      </div>
+          <br>
+        <input type="submit" class="btn btn-primary">
+    </fieldset>
   </form>
 
 </div>
 </body>
-
-<style>
-body, html {
-  height: 100%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.bg-image {
-  /* The image used */
-  background-image: url('/static/checkerboard-cross.png');
-
-  /* Add the blur effect */
-/*  filter: blur(8px);
-  -webkit-filter: blur(8px);*/
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Position text in the middle of the page/image */
-.bg-text {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 80%;
-  padding: 20px;
-  text-align: center;
-}
-</style>
 
 {% endblock %}

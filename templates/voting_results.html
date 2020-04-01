@@ -17,20 +17,43 @@
   <br>
   <br>
 
-    <div class="row">Bills:</div>
-      <div class="col-4">
+<!-- trying out a media object  -->
+<!--     <h4>Bills:</h4>
+      <div class="media">
         {% for bill in bill_list %}
-        <section class="col bill-itemized">
+        <div class="media-body col-4">
           {% for key, value in bill.items() %}
           {{ key }}: {{ value }}
           <br>
           {% endfor %}
-        </section>
       </div>
       {% endfor %}
-  </div>
+  </div> -->
 
-  <br>
+<!-- trying out a table
+unable to figure out how to separate each row from list of values
+  <h4>Bills:</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Bill Number</th>
+          <th scope="col">Title</th>
+          <th scope="col">Stage</th>
+          <th scope="col">Vote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">bill</th> 
+            {% for bill in bill_list %}
+              {% for value in bill.values() %}
+            <td>{{ value }}</td>
+              {% endfor %}
+            {% endfor %}
+        </tr>
+      </tbody>          
+    </table>
+  <br> -->
 
   <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
     <div id="contactLegis">Click here for more contact information</div>
