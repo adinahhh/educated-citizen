@@ -9,6 +9,7 @@
   Search below to find out!</h5>
 
   <br>
+  <div class="form-div">
   <form method="GET" action="/search-results"> 
     <label>Please enter legislator's last name:</label>
     <input type="text" id="last-name" name="last-name">
@@ -70,5 +71,20 @@
       <br>
     <input type="submit" class="btn btn-primary btn-sm">
   </form>
+  </div>
+
+<style>
+
+.form-div {
+  text-align: center;
+  display: block;
+}
+form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+</style>
 
 {% endblock %}

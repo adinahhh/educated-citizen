@@ -17,38 +17,41 @@
   <br>
   <br>
 
-<!-- trying out a media object  -->
+<!--   <h4>Bills</h4>
+    {% for bill in bill_list %}
+      <ul>{{ bill.title }}</ul>
+      <ul>{{ bill.passage }}</ul>
+    {% endfor %} -->
+
+<!-- trying out a media object, puts all bills at once  -->
 <!--     <h4>Bills:</h4>
       <div class="media">
         {% for bill in bill_list %}
-        <div class="media-body col-4">
+        <div class="media-body col-6">
           {% for key, value in bill.items() %}
           {{ key }}: {{ value }}
           <br>
           {% endfor %}
-      </div>
-      {% endfor %}
-  </div> -->
+        </div>
+        {% endfor %}
+      </div> -->
 
-<!-- trying out a table
-unable to figure out how to separate each row from list of values
+<!-- trying out a table, just creates one row
   <h4>Bills:</h4>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Bill Number</th>
           <th scope="col">Title</th>
           <th scope="col">Stage</th>
           <th scope="col">Vote</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">bill</th> 
-            {% for bill in bill_list %}
-              {% for value in bill.values() %}
-            <td>{{ value }}</td>
-              {% endfor %}
+        <tr>{% for bill in bill_list %}
+          <th scope="row">{{ bill.title }}</th> 
+          <th scope="row">{{ bill.passage }}</th>
+          <th scope="row">{{ bill.vote }}</th>
+          <br>
             {% endfor %}
         </tr>
       </tbody>          
