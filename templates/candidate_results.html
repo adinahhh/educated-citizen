@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h2>Contribution information for {{ full_name }}:</h2>
+<!-- <h2>Contribution information for {{ full_name }}:</h2>
 
     <h4>Legislator's Contributions by Industry:</h4>
         {% for industry in candidate_contributions %}
@@ -13,10 +13,43 @@
             {{ key }}: {{ value }}
             {% endfor %}
         {% endfor %}
+ -->
 
-    <h3>Are you concerned about where Rep {{ last_name }} is getting contributions?</h3>
-        <div id="reachLegis">Click here to contact your rep!</div>
-        <div id="phone-number" style="display: none">Your rep's phone number is {{ phone }} </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2>Contribution information for {{ full_name }}:</h2>
+      <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Industry Name</th>
+              <th scope="col">Individual Contributors</th>
+              <th scope="col">PACs</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <h4>Legislator's Contributions by Industry:</h4>
+            {% for industry in candidate_contributions %}
+            
+            <tr>
+              <td scope="row">{{ industry.Industry_Name }}</td> 
+              <td scope="row">${{ industry.Individual_Contributors }}</td> 
+              <td scope="row">${{ industry.PACs }}</td>
+              <td scope="row">${{ industry.Total }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>          
+        </table>
+      </div>
+    </div>
+
+      <h3>Are you concerned about where Rep {{ last_name }} is getting contributions?</h3>
+          <div id="reachLegis">Click here to contact your rep!</div>
+          <div id="phone-number" style="display: none">Your rep's phone number is {{ phone }} </div>
+
+</div>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/ajax.js"></script>

@@ -119,8 +119,8 @@ def member_results():
 
     for industry in top_industry_root.iter('industry'):
         dict_industries = {
-        "Industry Name" : industry.attrib['industry_name'],
-        "Individual Contributors": industry.attrib['indivs'],
+        "Industry_Name" : industry.attrib['industry_name'],
+        "Individual_Contributors": industry.attrib['indivs'],
         "PACs" : industry.attrib['pacs'],
         "Total" : industry.attrib['total']
         }
