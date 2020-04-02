@@ -42,6 +42,7 @@
           <table class="table">
             <thead>
               <tr>
+                <th scope="col">Bill Number</th>
                 <th scope="col">Title</th>
                 <th scope="col">Stage</th>
                 <th scope="col">Vote</th>
@@ -50,6 +51,7 @@
             <tbody>
               {% for bill in bill_list %}
                 <tr>
+                  <td scope="row">{{ bill.bill_number }}</td> 
                   <td scope="row">{{ bill.title }}</td> 
                   <td scope="row">{{ bill.passage }}</td>
                   <td scope="row">{{ bill.vote }}</td>

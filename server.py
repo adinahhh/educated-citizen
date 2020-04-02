@@ -182,7 +182,7 @@ def votes_by_official():
 
     for bill in voting_record_root.iter('bill'):
         dict_of_votes = {
-        "bill number": voting_record_root[index][1].text,
+        "bill_number": voting_record_root[index][1].text,
         "title" : voting_record_root[index][2].text,
         "passage": voting_record_root[index][8].text,
         "vote": voting_record_root[index][9].text,
