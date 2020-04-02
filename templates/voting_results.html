@@ -3,19 +3,16 @@
 {% block title %}Elected official info{% endblock %}
 
 {% block content %}
+<body>
+<!--   <h2>Voting records information for Rep {{ full_name }}:</h2>
 
-<div class="container-fluid">
-<h2>Voting records information for Rep {{ full_name }}:</h2>
-
-  <h4 id="bills">Bills:</h4>
-    {% for bill in bill_list %}
-    <ul>{% for key, value in bill.items() %}</ul>
-    <br>
-        {{ key }}: {{ value }}
-        {% endfor %}
-    {% endfor %}
-  <br>
-  <br>
+    <h4 id="bills">Bills:</h4>
+      {% for bill in bill_list %}
+      <ul>{% for key, value in bill.items() %}</ul>
+      <br>
+          {{ key }}: {{ value }}
+          {% endfor %}
+      {% endfor %} -->
 
 <!--   <h4>Bills</h4>
     {% for bill in bill_list %}
@@ -36,34 +33,47 @@
         {% endfor %}
       </div> -->
 
-<!-- trying out a table, just creates one row
-  <h4>Bills:</h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Stage</th>
-          <th scope="col">Vote</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>{% for bill in bill_list %}
-          <th scope="row">{{ bill.title }}</th> 
-          <th scope="row">{{ bill.passage }}</th>
-          <th scope="row">{{ bill.vote }}</th>
-          <br>
-            {% endfor %}
-        </tr>
-      </tbody>          
-    </table>
-  <br> -->
+<div class="container-fluid">
+  <div class="row">
+      <div class="col">
+
+        <h2>Bills:</h4>
+        <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Stage</th>
+                <th scope="col">Vote</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for bill in bill_list %}
+                <tr>
+                  <td scope="row">{{ bill.title }}</td> 
+                  <td scope="row">{{ bill.passage }}</td>
+                  <td scope="row">{{ bill.vote }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>          
+          </table>
+      </div>
+    </div>
 
   <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
     <div id="contactLegis">Click here for more contact information</div>
     <div id="phone" style="display: none">Your rep's phone number is {{ phone }} </div>
-  </div>
+  
+</div>
 
 
 <script src="/static/ajax.js"></script>
+</body>
+
+<style>
+body {
+  text-align: center;
+}
+</style>
 
 {% endblock %}
