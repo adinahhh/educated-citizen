@@ -3,29 +3,24 @@
 {% block title %}Legislator Lookup{% endblock %}
 
 {% block content %}
-<body>
 
-  <div class="jumbotron">
+<div class="container-fluid">
   <br>
   <br>
-  <p class="lead">It can be hard keeping track of who represents you. The Educated Citizen Project is here to help you learn more about your legislator's voting records and campaign contributions.</p>
-  <br>
+  <h5>It can be hard keeping track of who represents you. The Educated Citizen Project is here to help you learn more about your legislator's voting records and campaign contributions.</p>
+  <h5>
+<br>
 
-  <div>
+  <div class="form-div">
   <form method="GET" action="/officials"> 
-    <fieldset>
-      <legend>Please fill out the form below:</legend>
-      <div class="form-group">
+      <label>Please fill out the form below:</label>
         <label>Enter your 5 digit zip code:</label>
-        <div class="col-sm-10">
-          <input type="text" id="zipcode" name="zipcode" class="form-control" maxlength="5" pattern="[0-9]{5}" value="55105" size="10">
-        </div>
-      </div>
+          <input type="text" id="zipcode" name="zipcode" maxlength="5" pattern="[0-9]{5}" placeholder="55105">
 
       <br>
-      <div class="form-group">
+      <br>
         <label>Select an issue that matters to you:</label>
-        <select name="category" class="form-control">
+        <select name="category">
           <option value="2">Abortion</option>
           <option value="7">Arts, Entertainment, and History</option>
           <option value="13">Civil Liberties and Civil Rights</option>
@@ -46,14 +41,29 @@
           <option value="64">Transportation</option>
           <option value="68">Women</option>
         </select>
-      </div>
           <br>
-        <input type="submit" class="btn btn-primary">
-    </fieldset>
-  </form>
-  <div>
+        <input type="submit" class="btn btn-primary btn-small">
 
+  </form>
+  </div>
 </div>
-</body>
+
+<style>
+body {
+  background: url(/static/sprinkles.png) center center;
+  background-size: cover;
+}
+
+.form-div {
+  text-align: center;
+  display: block;
+}
+form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+</style>
 
 {% endblock %}
