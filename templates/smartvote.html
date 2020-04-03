@@ -3,20 +3,124 @@
 {% block title %}Elected Officials{% endblock %}
 
 {% block content %}
-    <h3>Your Elected Officials:</h3>
-        {% for candidate in candidates %}
-        <ul>{% for cand in candidate.values() %}</ul>
-        <br>
-            {{ cand }}
-            {% endfor %}
-        {% endfor %}
 
-    <h3>Recent Legislation on Issue you care about:</h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h3>Your Elected Officials:</h3>
+      <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Title</th>
+              <th scope="col">Party</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% for candidate in candidates %}
+
+            <tr>
+              <td scope="row">{{ candidate.cfirst_name }}</td>
+              <td scope="row">{{ candidate.clast_name }}</td>
+              <td scope="row">{{ candidate.ctitle }}</td>
+              <td scope="row">{{ candidate.coffice_parties }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col">
+      <h3>Recent Legislation Introduced:</h3>
+      <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Bill Number</th>
+              <th scope="col">Title</th>
+              <th scope="col">Type</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          {% for bill in bills %}
+
+            <tr>
+              <td scope="row">{{ bill.bill_number }}</td>
+              <td scope="row">{{ bill.bill_title }}</td>
+              <td scope="row">{{ bill.bill_type }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<!--     <h3>Recent Legislation on Issue you care about:</h3>
+      {% for bill in bills %}
+      <ul>{% for b in bill.values() %}</ul>
+      <br>
+          {{ b }}
+          {% endfor %}
+      {% endfor %} -->
+
+</div>
+<!-- 
+trying out card decks
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+
+    <h3>Your Elected Officials:</h3>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"> candidate.first_name  candidate.last_name </h5>
+            <p class="card-text"> ctitle </p>
+        </div>
+      </div>
+      <br>
+      <br>
+      {% for candidate in candidates %}
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"> {{ candidate.first_name }}  {{ candidate.last_name }} </h5>
+            <h6 class="card-subtitle mb-2 text-muted"> {{ coffice_parties }} </h6>
+              <p class="card-text"> {{ ctitle }} </p>
+      {% endfor %}
+        </div>
+      </div>
+
+      <br>
+    </div>
+  </div> -->
+
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This is some text.
+        </div>
+        <div class="card-body">
+          Some more text.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+<!--     <h3>Recent Legislation on Issue you care about:</h3>
         {% for bill in bills %}
         <ul>{% for b in bill.values() %}</ul>
         <br>
             {{ b }}
             {% endfor %}
-        {% endfor %}
+        {% endfor %} -->
+
 
 {% endblock %}
