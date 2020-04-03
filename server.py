@@ -19,6 +19,12 @@ def homepage():
 
     return render_template('homepage.html')
 
+@app.route('/about')
+def about_me():
+    """ Page for project information"""
+
+    return render_template('about.html')
+
 @app.route('/officials')
 def find_elected_officials():
     """Finding all elected officials using Vote Smart API"""
