@@ -3,7 +3,7 @@
 {% block title %}Elected official info{% endblock %}
 
 {% block content %}
-<body>
+
 <!--   <h2>Voting records information for Rep {{ full_name }}:</h2>
 
     <h4 id="bills">Bills:</h4>
@@ -39,7 +39,7 @@
 
         <h2>Bills:</h4>
         <br>
-          <table class="table">
+          <table class="table" style="width: 75%">
             <thead>
               <tr>
                 <th scope="col">Bill Number</th>
@@ -68,14 +68,19 @@
   
 </div>
 
-
-<script src="/static/ajax.js"></script>
-</body>
-
 <style>
-body {
+.container-fluid {
   text-align: center;
+  display: block;
+}
+table {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 </style>
+
+<script src="/static/ajax.js"></script>
 
 {% endblock %}

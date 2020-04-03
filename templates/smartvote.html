@@ -9,7 +9,7 @@
     <div class="col">
       <h3>Your Elected Officials:</h3>
       <br>
-        <table class="table">
+        <table class="table" style="width: 75%">
           <thead>
             <tr>
               <th scope="col">First Name</th>
@@ -38,7 +38,7 @@
     <div class="col">
       <h3>Recent Legislation Introduced:</h3>
       <br>
-        <table class="table">
+        <table class="table" style="width: 75%">
           <thead>
             <tr>
               <th scope="col">Bill Number</th>
@@ -60,14 +60,6 @@
         </table>
       </div>
     </div>
-
-<!--     <h3>Recent Legislation on Issue you care about:</h3>
-      {% for bill in bills %}
-      <ul>{% for b in bill.values() %}</ul>
-      <br>
-          {{ b }}
-          {% endfor %}
-      {% endfor %} -->
 
 </div>
 <!-- 
@@ -122,5 +114,17 @@ trying out card decks
             {% endfor %}
         {% endfor %} -->
 
+<style>
+.container-fluid {
+  text-align: center;
+  display: block;
+}
+table {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+</style>
 
 {% endblock %}

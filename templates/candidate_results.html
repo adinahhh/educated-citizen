@@ -20,7 +20,7 @@
     <div class="col">
       <h2>Contribution information for {{ full_name }}:</h2>
       <br>
-        <table class="table">
+        <table class="table" style="width: 75%">
           <thead>
             <tr>
               <th scope="col">Industry Name</th>
@@ -50,6 +50,19 @@
           <div id="phone-number" style="display: none">Your rep's phone number is {{ phone }} </div>
 
 </div>
+
+<style>
+.container-fluid {
+  text-align: center;
+  display: block;
+}
+table {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+</style>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/ajax.js"></script>
