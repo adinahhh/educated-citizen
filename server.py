@@ -31,6 +31,12 @@ def find_elected_officials():
 
     # find zip code from user's form
     user_zipcode = request.args.get('zipcode', '')
+
+    # error handling for if no zipcode entered:
+    if not user_zipcode:
+        flash('Please enter a valid 5 digit zipcode.')
+        return redirect('/')
+
     votesmart_zipcode_url = 'http://api.votesmart.org/Officials.getByZip'
     votesmart_zipcode_payload = {'key' : VOTESMART_API_KEY,
                                  'zip5' : user_zipcode}
