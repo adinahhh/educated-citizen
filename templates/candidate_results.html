@@ -20,10 +20,10 @@
     <div class="col">
       <h2>Contribution information for {{ full_name }}:</h2>
       <br>
-        <table class="table" style="width: 75%">
+        <table class="table border rounded" style="width: 75%">
           <thead>
-            <tr>
-              <th scope="col">Industry Name</th>
+            <tr class="table-active">
+              <th scope="col" width="25%">Industry Name</th>
               <th scope="col">Individual Contributors</th>
               <th scope="col">PACs</th>
               <th scope="col">Total</th>
@@ -47,7 +47,7 @@
 
       <h3>Are you concerned about where Rep {{ last_name }} is getting contributions?</h3>
           <div id="reachLegis">Click here to contact your rep!</div>
-          <div id="phone-number" style="display: none">Your rep's phone number is {{ phone }} </div>
+          <div id="phone-number" style="display: none" class="text-success">Your rep's phone number is {{ phone }} </div>
 
 </div>
 

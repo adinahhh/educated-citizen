@@ -39,9 +39,9 @@
 
         <h2>Recent Bills:</h4>
         <br>
-          <table class="table" style="width: 75%;">
+          <table class="table border rounded" style="width: 75%;">
             <thead>
-              <tr>
+              <tr class="table-active">
                 <th scope="col">Bill Number</th>
                 <th scope="col">Title</th>
                 <th scope="col">Stage</th>
@@ -64,7 +64,7 @@
 
   <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
     <div id="contactLegis">Click here for more contact information</div>
-    <div id="phone" style="display: none">Your rep's phone number is {{ phone }} </div>
+    <div id="phone" style="display: none" class="text-success">Your rep's phone number is {{ phone }} </div>
   
 </div>
 
