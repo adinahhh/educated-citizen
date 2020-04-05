@@ -2,7 +2,7 @@
 
 // for voting records page
 function showContactInfo(results) {
-    $('#contactLegis').toggle();
+    $('#contactLegis').hide();
     $('#phone').show();
 }
 

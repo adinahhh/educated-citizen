@@ -50,7 +50,7 @@
             </thead>
             <tfoot><tr><td colspan="4">A note on bill numbers: "HR" refers to a bill originated from the House of Representatives. "S" refers to a bill from the Senate. "H J Res" and "S J Res" are both joint resolutions, similar to bills. "H Res" refers to a resolution impacting an operation for the House. "H Con Res" and "S Con Res" are resolutions that impact an operation for both the House and Senate.
               <br>
-            A note on votes: Y = yes, N = no, C = </td></tr></tfoot>
+            A note on votes: Y = yes, N = no, C =</td></tr></tfoot>
             <tbody>
               {% for bill in bill_list %}
                 <tr>
@@ -66,7 +66,10 @@
     </div>
 
   <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
-    <div id="contactLegis">Click here for more contact information</div>
+    <div id="contactLegis" class="text-danger">Click here for more contact information
+    <br>
+    <i class="fas fa-phone-volume fa-2x"></i></div>
+
     <div id="phone" style="display: none" class="text-success">Your rep's phone number is {{ phone }} </div>
   
 </div>
