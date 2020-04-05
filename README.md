@@ -25,7 +25,7 @@ Whitney comes from a background in banking, but has been interested in software 
 
 This is the first feature of the app. Users are asked to enter their zip code and select a political issue that matters to them. This data is sent as a request to VoteSmart API. Using Jinja2 templating, a new webpage shows all elected officials in the user's district and any legislation passed on their selected political issue.
 
-< screenshot of landing page goes here >
+![alt text](https://github.com/adinahhh/educated-citizen/blob/master/static/homepage.gif "landing page")
 
 ### Voting History
 
