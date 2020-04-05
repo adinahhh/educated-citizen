@@ -100,7 +100,7 @@ def member_results():
     last_name = request.args.get('last-name')
     official_last_name = last_name.upper()
     state = request.args.get('state')
-    print(last_name)
+    
     # one legislator in db has a null opensecrets value, accounting for this below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
                                            Legislator.opensecrets_id!=None,
