@@ -37,8 +37,7 @@ The second feature of this app provides the user with a legislator's voting reco
 
 The final feature of this app allows the user to view a legislator's top contributors by industry. A user types in a legislator's last name and state into a form. This information is queried to the SQLAlchemy database and the id selected is sent as a request to OpenSecrets API. A user can discover the legislator's contact information if they do not agree with how the legislator obtains campaign contributions.
 
-< screenshot of contributions goes here >
-
+![alt text](https://github.com/adinahhh/educated-citizen/blob/master/static/contributions.gif "contributions page")
 
 ## Future Implementations
 Several features have been planned out to grow Educated Citizen app:
