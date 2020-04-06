@@ -100,7 +100,7 @@ def member_results():
     last_name = request.args.get('last-name')
     official_last_name = last_name.upper()
     state = request.args.get('state')
-    
+
     # one legislator in db has a null opensecrets value, accounting for this below
     db_last_name = Legislator.query.filter(Legislator.last_name==official_last_name,
                                            Legislator.opensecrets_id!=None,
@@ -132,9 +132,9 @@ def member_results():
     for industry in top_industry_root.iter('industry'):
         dict_industries = {
         "Industry_Name" : industry.attrib['industry_name'],
-        "Individual_Contributors": industry.attrib['indivs'],
-        "PACs" : industry.attrib['pacs'],
-        "Total" : industry.attrib['total']
+        "Individual_Contributors": '${:,.2f}'.format(int(industry.attrib['indivs'])),
+        "PACs" : '${:,.2f}'.format(int(industry.attrib['pacs'])),
+        "Total" : '${:,.2f}'.format(int(industry.attrib['total']))
         }
         list_industry.append(dict_industries)
 

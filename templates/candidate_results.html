@@ -36,9 +36,9 @@
             
             <tr>
               <td scope="row">{{ industry.Industry_Name }}</td> 
-              <td scope="row">${{ industry.Individual_Contributors }}</td> 
-              <td scope="row">${{ industry.PACs }}</td>
-              <td scope="row">${{ industry.Total }}</td>
+              <td scope="row">{{ industry.Individual_Contributors }}</td> 
+              <td scope="row">{{ industry.PACs }}</td>
+              <td scope="row">{{ industry.Total }}</td>
             </tr>
             {% endfor %}
           </tbody>          
@@ -52,7 +52,9 @@
           <i class="fas fa-phone-volume fa-2x"></i></div>
 
           <div id="phone-number" style="display: none" class="text-success">Your rep's phone number is {{ phone }} </div>
-
+<br>
+<br>
+<br>
 </div>
 
 <style>
