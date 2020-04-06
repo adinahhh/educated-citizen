@@ -31,7 +31,7 @@ This is the first feature of the app. Users are asked to enter their zip code an
 
 The second feature of this app provides the user with a legislator's voting record on a selected political issue. The user submits a form, typing in a legislator's last name, state, and a political issue. A query is made to the SQLAlchemy database, and a legislator's votesmart id is used to make a request to VoteSmart API. If the user doesnt agree with how a legislator has voted, the user can click on a button to request the legislator's contact information via an AJAX request.
 
-< screenshot of voting page goes here >
+![alt text](https://github.com/adinahhh/educated-citizen/blob/master/static/voting.gif "voting page")
 
 ### Contributions
 
