@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Elected official info{% endblock %}
+
+{% block content %}
+
+<!--   <h2>Voting records information for Rep {{ full_name }}:</h2>
+
+    <h4 id="bills">Bills:</h4>
+      {% for bill in bill_list %}
+      <ul>{% for key, value in bill.items() %}</ul>
+      <br>
+          {{ key }}: {{ value }}
+          {% endfor %}
+      {% endfor %} -->
+
+<!--   <h4>Bills</h4>
+    {% for bill in bill_list %}
+      <ul>{{ bill.title }}</ul>
+      <ul>{{ bill.passage }}</ul>
+    {% endfor %} -->
+
+<!-- trying out a media object, puts all bills at once  -->
+<!--     <h4>Bills:</h4>
+      <div class="media">
+        {% for bill in bill_list %}
+        <div class="media-body col-6">
+          {% for key, value in bill.items() %}
+          {{ key }}: {{ value }}
+          <br>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div> -->
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col">
+        <br>
+        <br>
+        <h2>Recent Bills:</h4>
+        <br>
+          <table class="table border rounded" style="width: 75%;">
+            <thead>
+              <tr class="table-active">
+                <th scope="col">Bill Number</th>
+                <th scope="col">Title</th>
+                <th scope="col">Stage</th>
+                <th scope="col">Vote</th>
+              </tr>
+            </thead>
+            <tfoot><tr><td colspan="4">
+              Bill numbers: "HR" refers to a bill originated from the House of Representatives. "S" refers to a bill from the Senate. "H J Res" and "S J Res" are both joint resolutions, similar to bills. "H Res" refers to a resolution impacting an operation for the House. "H Con Res" and "S Con Res" are resolutions that impact an operation for both the House and Senate.</td></tr></tfoot>
+            <tbody>
+              {% for bill in bill_list %}
+                <tr>
+                  <td scope="row">{{ bill.bill_number }}</td> 
+                  <td scope="row">{{ bill.title }}</td> 
+                  <td scope="row">{{ bill.passage }}</td>
+                  <td scope="row">{{ bill.vote }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>          
+          </table>
+      </div>
+    </div>
+
+  <h3>Would you like to contact Rep {{ last_name }} about their votes?</h3>
+    <div id="contactLegis" class="text-danger">Click here for more contact information
+    <br>
+    <i class="fas fa-phone-volume fa-2x"></i></div>
+
+    <div id="phone" style="display: none" class="text-success">Your rep's phone number is {{ phone }} </div>
+<br>
+<br>
+<br>
+</div>
+
+<style>
+.container-fluid {
+  text-align: center;
+  display: block;
+}
+table {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+</style>
+
+<script src="/static/ajax.js"></script>
+
+{% endblock %}

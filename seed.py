@@ -3,38 +3,10 @@
 from sqlalchemy import func
 from model import Legislator
 
-from legislators_current import legislature_json
-
 from model import connect_to_db, db
 from server import app
 import json
 
-# def load_legislators():
-    # """ Load legislators from data file into database."""
-
-    # ***ratings lab had a print statement, and then Class.query.delete()
-    # because my data isnt changing, do I need to do this?
-    # Legislator.query.delete()
-
-    # full_name = []
-    # party = []
-    # govtrack_id = []
-
-    # for legis in legislature_json:
-
-    #     full_name.append(legis['name']['official_full'])
-    #     party.append(legis['terms'][0]['party'])
-    #     # opensecrets_id = legis['id']['opensecrets']
-    #     govtrack_id.append(legis['id']['govtrack'])
-    #     # votesmart_id = legis['id']['votesmart']
-
-    #     legislator = Legislator(full_name=full_name, party=party, 
-    #                             govtrack_id=govtrack_id)
-
-    #     # adding to session to store it
-    #     db.session.add(legislator)
-
-    # db.session.commit()
 
 def json_reader(file_path):
     """ open and loads json files """
@@ -58,13 +30,23 @@ def load_legislators():
     i = 0
 
     for key in legislator_dict:
+        last_name = legislator_dict[i]['name']['last'].upper()
         full_name = legislator_dict[i]['name']['official_full']
+        state = legislator_dict[i]['terms'][0]['state']
         party = legislator_dict[i]['terms'][0]['party']
+        opensecrets_id = legislator_dict[i]['id'].get('opensecrets', None)
         govtrack_id = legislator_dict[i]['id']['govtrack']
+        votesmart_id = legislator_dict[i]['id'].get('votesmart', None)
+        phone = legislator_dict[i]['terms'][-1].get('phone', None)
+        website = legislator_dict[i]['terms'][-1].get('rss_url', None)
         i += 1
-        
-        legislator = Legislator(full_name=full_name, party=party, 
-                                govtrack_id=govtrack_id)
+
+        legislator = Legislator(last_name=last_name, full_name=full_name,
+                                state=state, party=party,
+                                opensecrets_id=opensecrets_id,
+                                govtrack_id=govtrack_id,
+                                votesmart_id=votesmart_id, phone=phone,
+                                website=website)
 
         db.session.add(legislator)
 

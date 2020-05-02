@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Elected official info{% endblock %}
+
+{% block content %}
+
+<!-- <h2>Contribution information for {{ full_name }}:</h2>
+
+    <h4>Legislator's Contributions by Industry:</h4>
+        {% for industry in candidate_contributions %}
+        <ul>{% for key, value in industry.items() %}</ul>
+        <br>
+            {{ key }}: {{ value }}
+            {% endfor %}
+        {% endfor %}
+ -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <br>
+      <h2>Contribution information for {{ full_name }}:</h2>
+      <br>
+        <table class="table border rounded" style="width: 75%">
+          <thead>
+            <tr class="table-active">
+              <th scope="col" width="25%">Industry Name</th>
+              <th scope="col" width="25%">Individual Contributors</th>
+              <th scope="col" width="25%">PACs</th>
+              <th scope="col" width="25%">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <h4>Legislator's Contributions by Industry:</h4>
+            {% for industry in candidate_contributions %}
+            
+            <tr>
+              <td scope="row">{{ industry.Industry_Name }}</td> 
+              <td scope="row">{{ industry.Individual_Contributors }}</td> 
+              <td scope="row">{{ industry.PACs }}</td>
+              <td scope="row">{{ industry.Total }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>          
+        </table>
+      </div>
+    </div>
+
+      <h3>Are you concerned about where Rep {{ last_name }} is getting contributions?</h3>
+          <div id="reachLegis" class="text-danger">Click the phone icon to contact your rep!
+            <br>
+          <i class="fas fa-phone-volume fa-2x"></i></div>
+
+          <div id="phone-number" style="display: none" class="text-success">Your rep's phone number is {{ phone }} </div>
+<br>
+<br>
+<br>
+</div>
+
+<style>
+.container-fluid {
+  text-align: center;
+  display: block;
+}
+table {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+</style>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/ajax.js"></script>
+
+{% endblock %}

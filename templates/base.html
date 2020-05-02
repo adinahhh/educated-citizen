@@ -3,11 +3,48 @@
 <head>
   <title>{% block title %}{% endblock %}</title>
 
-  <link rel="stylesheet" href="/static/css/styles.css">
-</head>
+<!--   Adding responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+
+
+<!-- jQuery CDN -->
+  <script src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<!-- popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="/static/styles.css">
+
+<!--   Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/7a8a18bf88.js" crossorigin="anonymous"></script>
+
+</head>
 <body>
+  {% include 'nav.html' %}
+
+  {% block body %}
+<!-- BODY GOES HERE -->
+  {% endblock %}
+
+    <!-- Show flashed messages -->
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <!-- This is where the main content goes. -->
     {% block content %}{% endblock %}
 
+<!-- <script src="/static/ajax.js"></script> -->
 </body>
 </html>
