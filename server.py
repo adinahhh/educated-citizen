@@ -208,6 +208,6 @@ def votes_by_official():
 
 
 if __name__ == '__main__':
-    app.debug = True
-    connect_to_db(app)
-    app.run(host='0.0.0.0')
+    # app.debug = True
+    # connect_to_db(app)
+    app.run(port=5000, host='0.0.0.0')
